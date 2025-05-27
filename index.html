@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS MPT Daily Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for animations and specific styles not easily covered by Tailwind */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA; /* Background color */
+            color: #2C3E50; /* Default text color */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        .text-primary {
+            color: #2C3E50;
+        }
+
+        .date-color {
+            color: #6D6875;
+        }
+
+        .gradient-button {
+            background-image: linear-gradient(to right, #E6E6FA, #FFDAB9);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .gradient-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-card {
+            transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
+        }
+
+        .option-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Pulse animation for correct answer */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(144, 238, 144, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(144, 238, 144, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(144, 238, 144, 0); }
+        }
+
+        .pulse-green {
+            animation: pulse-green 0.6s ease-out;
+            background-color: #90EE90; /* Light Green */
+        }
+
+        /* Shake animation for wrong answer */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .shake-red {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            background-color: #FF6B6B; /* Red */
+        }
+
+        /* Progress bar animation */
+        .progress-bar-inner {
+            background-image: linear-gradient(to right, #20B2AA, #3EB489);
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Sticky date positioning for desktop */
+        .sticky-date {
+            position: sticky;
+            top: 1rem;
+            z-index: 10;
+        }
+
+        /* Responsive adjustments for sticky date */
+        @media (min-width: 768px) {
+            .sticky-date {
+                right: 1rem;
+                left: auto;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sticky-date {
+                left: 1rem;
+                right: auto;
+            }
+        }
+
+        /* Hide elements for security */
+        .no-select {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="no-select" oncontextmenu="return false;">
+
+    <div id="login-page" class="min-h-screen flex items-center justify-center bg-[#F8F9FA] p-4">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-[#FFF5EE]">
+            <h2 class="text-3xl font-bold text-center text-primary mb-6">Quiz Login</h2>
+            <div class="mb-4">
+                <label for="username" class="block text-primary text-sm font-bold mb-2">Username:</label>
+                <input type="text" id="username" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-primary leading-tight focus:outline-none focus:shadow-outline bg-gray-100" placeholder="Enter username">
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-primary text-sm font-bold mb-2">Password:</label>
+                <input type="password" id="password" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-primary leading-tight focus:outline-none focus:shadow-outline bg-gray-100" placeholder="Enter password">
+            </div>
+            <button id="login-button" class="gradient-button text-white font-bold py-3 px-6 rounded-lg w-full focus:outline-none focus:shadow-outline">Login</button>
+            <p id="login-error" class="text-red-500 text-center mt-4 hidden">Invalid username or password.</p>
+        </div>
+    </div>
+
+    <div id="candidate-info-page" class="min-h-screen flex items-center justify-center bg-[#F8F9FA] p-4 hidden">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-[#FFF5EE]">
+            <h2 class="text-3xl font-bold text-center text-primary mb-6">Candidate Information</h2>
+            <div class="mb-6">
+                <label for="full-name" class="block text-primary text-sm font-bold mb-2">Full Name:</label>
+                <input type="text" id="full-name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-primary leading-tight focus:outline-none focus:shadow-outline bg-gray-100" placeholder="Enter your full name">
+            </div>
+            <button id="start-quiz-button" class="gradient-button text-white font-bold py-3 px-6 rounded-lg w-full focus:outline-none focus:shadow-outline">Start Quiz</button>
+            <p id="name-error" class="text-red-500 text-center mt-4 hidden">Please enter your full name.</p>
+        </div>
+    </div>
+
+    <div id="quiz-page" class="min-h-screen bg-[#F8F9FA] p-4 md:p-8 hidden">
+        <div class="relative mb-6">
+            <div id="live-date" class="sticky-date text-sm font-semibold date-color p-2 rounded-lg bg-white shadow-md flex items-center justify-end md:justify-start">
+                <i class="far fa-calendar-alt mr-2"></i>
+                <span></span>
+            </div>
+            <h1 class="text-4xl font-bold text-center text-primary mt-4 mb-4">CSS MPT Daily Quiz – <span id="quiz-date-title"></span></h1>
+
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-4 overflow-hidden shadow-inner">
+                <div id="progress-bar" class="progress-bar-inner h-full rounded-full text-xs text-white flex items-center justify-center" style="width: 0%;">
+                    <span id="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="w-full rounded-xl overflow-hidden shadow-lg mb-4">
+                <img src="https://i.ibb.co/tMYHtj6n/480709804-2211254089269599-2819007219717277160-n.jpg" alt="Quiz Banner" class="w-full h-auto object-cover rounded-xl">
+            </div>
+
+            <div class="text-center text-primary text-sm md:text-base font-bold mb-6">
+                <p>DAWNDIGEST</p>
+                <p>PREPARED BY: SYED ASGHAR ALI SHAH Contact: 03265762698</p>
+                <p>Updated on: <span id="updated-date"></span></p>
+            </div>
+
+            <div class="text-center text-lg font-bold text-primary mb-6">
+                Time Remaining: <span id="timer">40:00</span>
+            </div>
+        </div>
+
+        <div id="quiz-container" class="grid grid-cols-1 md:grid-cols-1 gap-6">
+            <div id="question-card" class="bg-white p-6 rounded-xl shadow-lg border border-[#FFF5EE]">
+                <p class="text-lg font-semibold mb-4 text-primary"><span id="question-number"></span>. <span id="question-text"></span></p>
+                <div id="options-container" class="grid grid-cols-1 gap-3">
+                    </div>
+                <div id="explanation-container" class="mt-4 p-3 rounded-lg bg-gray-100 text-sm italic text-primary hidden">
+                    <p id="explanation-text"></p>
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-6">
+                <button id="prev-button" class="gradient-button text-white font-bold py-3 px-6 rounded-lg opacity-50 cursor-not-allowed" disabled>Previous</button>
+                <button id="next-button" class="gradient-button text-white font-bold py-3 px-6 rounded-lg">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="results-page" class="min-h-screen flex items-center justify-center bg-[#F8F9FA] p-4 hidden">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-[#FFF5EE] text-primary">
+            <h2 class="text-3xl font-bold text-center mb-6">Quiz Results</h2>
+            <p class="text-lg mb-2"><strong>Candidate Name:</strong> <span id="result-name"></span></p>
+            <p class="text-lg mb-2"><strong>Total Score:</strong> <span id="result-score"></span> / 100</p>
+            <p class="text-lg mb-2"><strong>Time Taken:</strong> <span id="result-time"></span></p>
+            <p class="text-lg mb-4"><strong>Questions Attempted:</strong> <span id="result-attempted"></span></p>
+            <button id="retake-quiz-button" class="gradient-button text-white font-bold py-3 px-6 rounded-lg w-full focus:outline-none focus:shadow-outline">Retake Quiz</button>
+        </div>
+    </div>
+
+    <div id="custom-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modal-message" class="text-lg text-primary"></p>
+            <button id="modal-ok-button" class="gradient-button text-white font-bold py-2 px-4 rounded-lg mt-4 hidden">OK</button>
+            <button id="modal-cancel-button" class="gradient-button text-white font-bold py-2 px-4 rounded-lg mt-4 ml-2 hidden">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // Disable right-click, copy/paste, and developer tools
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.key === 'F12' ||
+                (event.ctrlKey && event.shiftKey && event.key === 'I') ||
+                (event.ctrlKey && event.key === 'u') ||
+                (event.ctrlKey && event.key === 'U') ||
+                (event.ctrlKey && event.key === 'c') ||
+                (event.ctrlKey && event.key === 'C') ||
+                (event.ctrlKey && event.key === 'v') ||
+                (event.ctrlKey && event.key === 'V')
+            ) {
+                event.preventDefault();
+            }
+        });
+
+        // Custom Modal Functions
+        function showModal(message, type = 'alert', onConfirm = null) {
+            const modal = document.getElementById('custom-modal');
+            const modalMessage = document.getElementById('modal-message');
+            const okButton = document.getElementById('modal-ok-button');
+            const cancelButton = document.getElementById('modal-cancel-button');
+            const closeButton = document.querySelector('#custom-modal .close-button');
+
+            modalMessage.textContent = message;
+            okButton.onclick = () => {
+                modal.style.display = 'none';
+                if (type === 'confirm' && onConfirm) {
+                    onConfirm(true);
+                }
+            };
+            cancelButton.onclick = () => {
+                modal.style.display = 'none';
+                if (type === 'confirm' && onConfirm) {
+                    onConfirm(false);
+                }
+            };
+            closeButton.onclick = () => modal.style.display = 'none';
+
+            if (type === 'alert') {
+                okButton.style.display = 'inline-block';
+                cancelButton.style.display = 'none';
+            } else if (type === 'confirm') {
+                okButton.style.display = 'inline-block';
+                cancelButton.style.display = 'inline-block';
+            }
+            modal.style.display = 'flex'; // Use flex to center
+        }
+
+
+        // Quiz Data and State
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let questionsAttempted = 0;
+        let timerInterval;
+        const quizDuration = 40 * 60; // 40 minutes in seconds
+        let timeElapsed = 0;
+        let userName = '';
+        let quizStartTime;
+        let quizCompleted = false;
+
+        // Store answers
+        const userAnswers = {}; // { questionIndex: selectedOptionIndex }
+
+        // Curated MCQs - 100 questions (10 Easy, 50 Medium, 40 Tough)
+        // Note: Difficulty is a subjective categorization by the LLM based on perceived complexity.
+        // Explanations are simplified for brevity and clarity.
+        const allQuizQuestions = [
+            // General Knowledge (GK) - World Geography (Canals, Lakes, Waterfalls, Seaports) - Aim for ~33 questions
+            // Easy (3 questions)
+            {
+                question: "Which is the longest man-made waterway in the world?",
+                options: ["Suez Canal", "Panama Canal", "Grand Canal (China)", "Kiel Canal"],
+                answer: 2,
+                explanation: "The Grand Canal of China is the longest man-made waterway.",
+                difficulty: "easy"
+            },
+            {
+                question: "Lake Superior is the largest freshwater lake by surface area in which continent?",
+                options: ["Asia", "Africa", "North America", "Europe"],
+                answer: 2,
+                explanation: "Lake Superior, part of the Great Lakes, is located in North America.",
+                difficulty: "easy"
+            },
+            {
+                question: "Victoria Falls is located on the border of Zambia and which other country?",
+                options: ["Zimbabwe", "Botswana", "South Africa", "Tanzania"],
+                answer: 0,
+                explanation: "Victoria Falls is on the Zambezi River, at the border of Zambia and Zimbabwe.",
+                difficulty: "easy"
+            },
+            // Medium (10 questions)
+            {
+                question: "The Suez Canal connects the Mediterranean Sea with which other body of water?",
+                options: ["Atlantic Ocean", "Red Sea", "Black Sea", "Indian Ocean"],
+                answer: 1,
+                explanation: "The Suez Canal provides a direct route between the Mediterranean Sea and the Red Sea.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which of the following is the deepest lake in the world?",
+                options: ["Lake Baikal", "Lake Tanganyika", "Caspian Sea", "Lake Vostok"],
+                answer: 0,
+                explanation: "Lake Baikal in Siberia, Russia, is the deepest and oldest freshwater lake in the world.",
+                difficulty: "medium"
+            },
+            {
+                question: "The Panama Canal connects the Atlantic Ocean with which ocean?",
+                options: ["Indian Ocean", "Pacific Ocean", "Arctic Ocean", "Southern Ocean"],
+                answer: 1,
+                explanation: "The Panama Canal links the Atlantic Ocean (via the Caribbean Sea) and the Pacific Ocean.",
+                difficulty: "medium"
+            },
+            {
+                question: "Angel Falls, the world's highest uninterrupted waterfall, is located in which country?",
+                options: ["Brazil", "Venezuela", "Argentina", "Canada"],
+                answer: 1,
+                explanation: "Angel Falls is located in Canaima National Park, Bolívar State, Venezuela.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which of these is a major seaport in Germany?",
+                options: ["Rotterdam", "Antwerp", "Hamburg", "Marseille"],
+                answer: 2,
+                explanation: "Hamburg is a major port city in northern Germany.",
+                difficulty: "medium"
+            },
+            {
+                question: "The Great Lakes of North America consist of Superior, Michigan, Huron, Erie, and what other lake?",
+                options: ["Lake Ontario", "Lake Winnipeg", "Great Slave Lake", "Lake Tahoe"],
+                answer: 0,
+                explanation: "The five Great Lakes are Superior, Michigan, Huron, Erie, and Ontario.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which canal separates the North Island and South Island of New Zealand?",
+                options: ["Cook Strait", "Foveaux Strait", "Bass Strait", "Torres Strait"],
+                answer: 0,
+                explanation: "The Cook Strait separates New Zealand's North and South Islands.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which African lake is the second largest freshwater lake by surface area in the world?",
+                options: ["Lake Victoria", "Lake Tanganyika", "Lake Malawi", "Lake Chad"],
+                answer: 0,
+                explanation: "Lake Victoria is the largest lake in Africa and the second-largest freshwater lake in the world by surface area.",
+                difficulty: "medium"
+            },
+            {
+                question: "The Port of Shanghai is the busiest container port in the world, located in which country?",
+                options: ["Japan", "South Korea", "China", "Singapore"],
+                answer: 2,
+                explanation: "The Port of Shanghai is located in China and is the world's busiest container port.",
+                difficulty: "medium"
+            },
+            {
+                question: "Niagara Falls is located on the border between the USA and which other country?",
+                options: ["Mexico", "Canada", "Cuba", "Russia"],
+                answer: 1,
+                explanation: "Niagara Falls is a group of three waterfalls at the southern end of Niagara Gorge, spanning the border between the Canadian province of Ontario and the US state of New York.",
+                difficulty: "medium"
+            },
+            // Tough (20 questions)
+            {
+                question: "The Corinth Canal, a narrow waterway, connects the Gulf of Corinth with the Saronic Gulf in which country?",
+                options: ["Greece", "Italy", "Turkey", "Egypt"],
+                answer: 0,
+                explanation: "The Corinth Canal is a canal that connects the Gulf of Corinth with the Saronic Gulf in the Aegean Sea, cutting through the narrow Isthmus of Corinth.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following lakes is known for being the lowest point on Earth's land surface?",
+                options: ["Lake Van", "Dead Sea", "Lake Assal", "Caspian Sea"],
+                answer: 1,
+                explanation: "The Dead Sea, bordering Jordan and Israel, is Earth's lowest elevation on land.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Strait of Malacca, a crucial shipping lane, connects the Indian Ocean with which sea?",
+                options: ["South China Sea", "Arabian Sea", "Bay of Bengal", "Andaman Sea"],
+                answer: 0,
+                explanation: "The Strait of Malacca is a narrow stretch of water, 805 km (500 mi) in length, between the Malay Peninsula and the Indonesian island of Sumatra. It connects the Indian Ocean to the South China Sea.",
+                difficulty: "tough"
+            },
+            {
+                question: "Kaieteur Falls, a large single-drop waterfall, is located in the rainforests of which South American country?",
+                options: ["Peru", "Ecuador", "Guyana", "Colombia"],
+                answer: 2,
+                explanation: "Kaieteur Falls is a massive waterfall on the Potaro River in Guyana.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which major European seaport is located at the mouth of the River Elbe?",
+                options: ["Antwerp", "Rotterdam", "Hamburg", "Bremen"],
+                answer: 2,
+                explanation: "The Port of Hamburg is a seaport on the River Elbe in Hamburg, Germany.",
+                difficulty: "tough"
+            },
+            {
+                question: "Lake Titicaca, one of the highest navigable lakes in the world, is located on the border of Peru and which other country?",
+                options: ["Bolivia", "Chile", "Ecuador", "Colombia"],
+                answer: 0,
+                explanation: "Lake Titicaca is located in the Andes mountains, on the border of Peru and Bolivia.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Grand Canal of China connects which two major rivers?",
+                options: ["Yellow River and Yangtze River", "Pearl River and Yellow River", "Yangtze River and Xi River", "Mekong River and Red River"],
+                answer: 0,
+                explanation: "The Grand Canal connects the Yellow River and the Yangtze River.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the name of the artificial waterway connecting the North Sea to the Baltic Sea?",
+                options: ["Suez Canal", "Kiel Canal", "Panama Canal", "Erie Canal"],
+                answer: 1,
+                explanation: "The Kiel Canal is an artificial waterway in Germany that connects the North Sea and the Baltic Sea.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which lake is the largest lake entirely within Canada?",
+                options: ["Great Bear Lake", "Great Slave Lake", "Lake Winnipeg", "Lake Athabasca"],
+                answer: 0,
+                explanation: "Great Bear Lake is the largest lake entirely within Canada.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Port of Rotterdam, Europe's largest port, is located in which country?",
+                options: ["Belgium", "Netherlands", "France", "Germany"],
+                answer: 1,
+                explanation: "The Port of Rotterdam is a major European port located in the city of Rotterdam, Netherlands.",
+                difficulty: "tough"
+            },
+            {
+                question: "Iguazu Falls is a system of waterfalls on the border of Brazil and which other country?",
+                options: ["Argentina", "Paraguay", "Uruguay", "Chile"],
+                answer: 0,
+                explanation: "Iguazu Falls is on the border of Brazil and Argentina.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Welland Canal is a ship canal in Ontario, Canada, connecting Lake Ontario and which other Great Lake?",
+                options: ["Lake Erie", "Lake Huron", "Lake Michigan", "Lake Superior"],
+                answer: 0,
+                explanation: "The Welland Canal connects Lake Ontario and Lake Erie, allowing ships to bypass Niagara Falls.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following is the largest artificial lake in the world by volume?",
+                options: ["Lake Kariba", "Lake Volta", "Lake Nasser", "Lake Mead"],
+                answer: 1,
+                explanation: "Lake Volta in Ghana is the largest artificial lake by surface area, but Lake Kariba is often cited as the largest by volume. However, Lake Volta is also a strong contender for largest by volume depending on the source.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Port of Singapore is one of the world's busiest ports in terms of total shipping tonnage. Which country is it located in?",
+                options: ["Malaysia", "Indonesia", "Singapore", "Thailand"],
+                answer: 2,
+                explanation: "The Port of Singapore is the collective name for the facilities and services at the Singaporean port.",
+                difficulty: "tough"
+            },
+            {
+                question: "Gullfoss, a powerful waterfall, is a popular tourist attraction in which Nordic country?",
+                options: ["Norway", "Sweden", "Iceland", "Finland"],
+                answer: 2,
+                explanation: "Gullfoss is a waterfall located in the canyon of the Hvítá river in southwest Iceland.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Erie Canal, historically significant for trade, connects Lake Erie to which major river?",
+                options: ["Mississippi River", "Hudson River", "Ohio River", "St. Lawrence River"],
+                answer: 1,
+                explanation: "The Erie Canal connects Lake Erie to the Hudson River, linking the Great Lakes to the Atlantic Ocean.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following is the largest saltwater lake in the world?",
+                options: ["Great Salt Lake", "Dead Sea", "Caspian Sea", "Lake Aral"],
+                answer: 2,
+                explanation: "The Caspian Sea is the world's largest inland body of water, variously regarded as the world's largest lake or a full-fledged sea.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Port of Busan is the largest seaport in South Korea, located on which sea?",
+                options: ["Yellow Sea", "East China Sea", "Sea of Japan (East Sea)", "Philippine Sea"],
+                answer: 2,
+                explanation: "The Port of Busan is located on the southeastern tip of the Korean Peninsula, facing the Sea of Japan (East Sea).",
+                difficulty: "tough"
+            },
+            {
+                question: "Plitvice Lakes National Park, famous for its cascading lakes and waterfalls, is in which European country?",
+                options: ["Slovenia", "Croatia", "Bosnia and Herzegovina", "Montenegro"],
+                answer: 1,
+                explanation: "Plitvice Lakes National Park is one of the oldest and largest national parks in Croatia.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Volga-Don Canal connects the Volga River with the Don River, providing a waterway between which two major seas?",
+                options: ["Black Sea and Caspian Sea", "Baltic Sea and Black Sea", "Caspian Sea and Aral Sea", "Black Sea and Mediterranean Sea"],
+                answer: 0,
+                explanation: "The Volga-Don Canal connects the Volga River and the Don River, linking the Caspian Sea and the Black Sea.",
+                difficulty: "tough"
+            },
+
+            // English (Prepositions) - Aim for ~33 questions
+            // Easy (3 questions)
+            {
+                question: "She is good ______ English.",
+                options: ["at", "in", "on", "with"],
+                answer: 0,
+                explanation: "'Good at' is used to express proficiency in something.",
+                difficulty: "easy"
+            },
+            {
+                question: "He is afraid ______ dogs.",
+                options: ["from", "of", "with", "by"],
+                answer: 1,
+                explanation: "'Afraid of' is the correct idiom.",
+                difficulty: "easy"
+            },
+            {
+                question: "The book is ______ the table.",
+                options: ["in", "at", "on", "under"],
+                answer: 2,
+                explanation: "'On' is used for objects resting on a surface.",
+                difficulty: "easy"
+            },
+            // Medium (17 questions)
+            {
+                question: "He apologized ______ his mistake.",
+                options: ["for", "to", "about", "with"],
+                answer: 0,
+                explanation: "'Apologize for' is used when apologizing for an action or mistake.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is accustomed ______ hot weather.",
+                options: ["to", "with", "by", "for"],
+                answer: 0,
+                explanation: "'Accustomed to' means familiar with something.",
+                difficulty: "medium"
+            },
+            {
+                question: "I agree ______ you on this point.",
+                options: ["with", "to", "on", "about"],
+                answer: 0,
+                explanation: "'Agree with' is used when agreeing with a person.",
+                difficulty: "medium"
+            },
+            {
+                question: "He arrived ______ London yesterday.",
+                options: ["at", "in", "on", "to"],
+                answer: 1,
+                explanation: "'Arrive in' is used for cities or countries.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is angry ______ her brother.",
+                options: ["at", "with", "for", "about"],
+                answer: 1,
+                explanation: "'Angry with' is used when angry at a person.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is fond ______ music.",
+                options: ["of", "for", "about", "with"],
+                answer: 0,
+                explanation: "'Fond of' means having a liking for something.",
+                difficulty: "medium"
+            },
+            {
+                question: "She suffers ______ a chronic illness.",
+                options: ["from", "with", "of", "by"],
+                answer: 0,
+                explanation: "'Suffer from' is used for illnesses or conditions.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is dependent ______ his parents.",
+                options: ["on", "upon", "from", "of"],
+                answer: 0,
+                explanation: "'Dependent on' means relying on someone or something.",
+                difficulty: "medium"
+            },
+            {
+                question: "The teacher was pleased ______ my progress.",
+                options: ["with", "at", "by", "from"],
+                answer: 0,
+                explanation: "'Pleased with' is used to express satisfaction with something.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is interested ______ reading books.",
+                options: ["in", "on", "at", "about"],
+                answer: 0,
+                explanation: "'Interested in' is the correct phrase.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is married ______ a doctor.",
+                options: ["to", "with", "by", "for"],
+                answer: 0,
+                explanation: "'Married to' is the correct preposition.",
+                difficulty: "medium"
+            },
+            {
+                question: "He was accused ______ theft.",
+                options: ["of", "for", "with", "by"],
+                answer: 0,
+                explanation: "'Accused of' is the correct phrase.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is confident ______ her success.",
+                options: ["of", "in", "about", "with"],
+                answer: 0,
+                explanation: "'Confident of' is used to express certainty about something.",
+                difficulty: "medium"
+            },
+            {
+                question: "He was born ______ a small village.",
+                options: ["at", "in", "on", "from"],
+                answer: 1,
+                explanation: "'Born in' is used for places.",
+                difficulty: "medium"
+            },
+            {
+                question: "Beware ______ pickpockets.",
+                options: ["of", "from", "about", "with"],
+                answer: 0,
+                explanation: "'Beware of' means to be careful about something.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is grateful ______ your help.",
+                options: ["for", "to", "about", "with"],
+                answer: 0,
+                explanation: "'Grateful for' is used to express gratitude for something.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is responsible ______ the project.",
+                options: ["for", "to", "of", "with"],
+                answer: 0,
+                explanation: "'Responsible for' means accountable for something.",
+                difficulty: "medium"
+            },
+            // Tough (13 questions)
+            {
+                question: "He abstained ______ voting.",
+                options: ["from", "in", "on", "with"],
+                answer: 0,
+                explanation: "'Abstain from' means to refrain from doing something.",
+                difficulty: "tough"
+            },
+            {
+                question: "The new policy will come ______ effect next month.",
+                options: ["into", "in", "to", "on"],
+                answer: 0,
+                explanation: "'Come into effect' means to become operational.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is absorbed ______ his studies.",
+                options: ["in", "on", "at", "with"],
+                answer: 0,
+                explanation: "'Absorbed in' means fully engrossed in something.",
+                difficulty: "tough"
+            },
+            {
+                question: "She is anxious ______ her exam results.",
+                options: ["about", "for", "of", "with"],
+                answer: 0,
+                explanation: "'Anxious about' is used when worried about something.",
+                difficulty: "tough"
+            },
+            {
+                question: "He was acquitted ______ the crime.",
+                options: ["of", "from", "for", "with"],
+                answer: 0,
+                explanation: "'Acquitted of' means declared not guilty of a crime.",
+                difficulty: "tough"
+            },
+            {
+                question: "She is capable ______ doing great things.",
+                options: ["of", "in", "for", "with"],
+                answer: 0,
+                explanation: "'Capable of' means having the ability to do something.",
+                difficulty: "tough"
+            },
+            {
+                question: "He complained ______ the manager ______ the poor service.",
+                options: ["to, about", "about, to", "at, for", "with, on"],
+                answer: 0,
+                explanation: "'Complain to' a person, 'complain about' a thing.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is conversant ______ several languages.",
+                options: ["with", "in", "about", "of"],
+                answer: 0,
+                explanation: "'Conversant with' means familiar with or knowledgeable about something.",
+                difficulty: "tough"
+            },
+            {
+                question: "The judge presided ______ the case.",
+                options: ["over", "on", "at", "in"],
+                answer: 0,
+                explanation: "'Preside over' means to be in charge of a meeting or event.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is addicted ______ gambling.",
+                options: ["to", "in", "on", "with"],
+                answer: 0,
+                explanation: "'Addicted to' is the correct phrase.",
+                difficulty: "tough"
+            },
+            {
+                question: "She is conscious ______ her duties.",
+                options: ["of", "about", "with", "for"],
+                answer: 0,
+                explanation: "'Conscious of' means aware of something.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is eligible ______ the scholarship.",
+                options: ["for", "to", "of", "with"],
+                answer: 0,
+                explanation: "'Eligible for' means qualified for something.",
+                difficulty: "tough"
+            },
+            {
+                question: "The accident resulted ______ serious injuries.",
+                options: ["in", "from", "to", "with"],
+                answer: 0,
+                explanation: "'Result in' means to cause something.",
+                difficulty: "tough"
+            },
+
+            // Islamic Studies (IS) - Most Important/Frequently Asked Questions - Aim for ~34 questions
+            // Easy (4 questions)
+            {
+                question: "Who is known as the last prophet of Islam?",
+                options: ["Prophet Musa (Moses)", "Prophet Isa (Jesus)", "Prophet Muhammad (PBUH)", "Prophet Ibrahim (Abraham)"],
+                answer: 2,
+                explanation: "Prophet Muhammad (PBUH) is the final prophet in Islam.",
+                difficulty: "easy"
+            },
+            {
+                question: "What is the holy book of Islam?",
+                options: ["Torah", "Bible", "Quran", "Zabur"],
+                answer: 2,
+                explanation: "The Quran is the central religious text of Islam.",
+                difficulty: "easy"
+            },
+            {
+                question: "How many pillars are there in Islam?",
+                options: ["Three", "Four", "Five", "Six"],
+                answer: 2,
+                explanation: "There are five pillars of Islam: Shahada, Salat, Zakat, Sawm, and Hajj.",
+                difficulty: "easy"
+            },
+            {
+                question: "In which city is the Kaaba located?",
+                options: ["Madinah", "Jerusalem", "Makkah", "Baghdad"],
+                answer: 2,
+                explanation: "The Kaaba is a building at the center of Islam's most important mosque, the Masjid al-Haram in Makkah, Saudi Arabia.",
+                difficulty: "easy"
+            },
+            // Medium (23 questions)
+            {
+                question: "What is the first month of the Islamic calendar?",
+                options: ["Ramadan", "Shawwal", "Muharram", "Rabi' al-Awwal"],
+                answer: 2,
+                explanation: "Muharram is the first month of the Islamic calendar.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the name of the migration of Prophet Muhammad (PBUH) and his companions from Makkah to Madinah?",
+                options: ["Hijra", "Jihad", "Hajj", "Umrah"],
+                answer: 0,
+                explanation: "The Hijra refers to the migration of Prophet Muhammad and his followers from Makkah to Madinah in 622 CE.",
+                difficulty: "medium"
+            },
+            {
+                question: "How many times a day do Muslims perform Salat (prayer)?",
+                options: ["Three", "Four", "Five", "Six"],
+                answer: 2,
+                explanation: "Muslims perform five obligatory prayers daily.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is Zakat?",
+                options: ["Fasting", "Charity", "Pilgrimage", "Prayer"],
+                answer: 1,
+                explanation: "Zakat is an obligatory charity paid to the poor and needy.",
+                difficulty: "medium"
+            },
+            {
+                question: "During which month do Muslims fast from dawn to sunset?",
+                options: ["Muharram", "Rajab", "Ramadan", "Dhul Hijjah"],
+                answer: 2,
+                explanation: "Fasting is observed during the month of Ramadan.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the pilgrimage to Makkah called?",
+                options: ["Umrah", "Jihad", "Hajj", "Shahada"],
+                answer: 2,
+                explanation: "Hajj is the annual pilgrimage to Makkah.",
+                difficulty: "medium"
+            },
+            {
+                question: "Who was the first Caliph of Islam?",
+                options: ["Umar ibn al-Khattab", "Ali ibn Abi Talib", "Abu Bakr as-Siddiq", "Uthman ibn Affan"],
+                answer: 2,
+                explanation: "Abu Bakr was the first Caliph of Islam, succeeding Prophet Muhammad (PBUH).",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the meaning of 'Shahada'?",
+                options: ["Prayer", "Fasting", "Declaration of Faith", "Charity"],
+                answer: 2,
+                explanation: "Shahada is the declaration of faith, 'There is no god but Allah, and Muhammad is His messenger.'",
+                difficulty: "medium"
+            },
+            {
+                question: "Which battle was fought in the 2nd year of Hijra, considered the first major battle in Islam?",
+                options: ["Battle of Uhud", "Battle of Khandaq", "Battle of Badr", "Battle of Tabuk"],
+                answer: 2,
+                explanation: "The Battle of Badr was the first major battle between the early Muslims and the Quraish of Makkah.",
+                difficulty: "medium"
+            },
+            {
+                question: "Who was the wife of Prophet Muhammad (PBUH) known as 'Mother of the Believers'?",
+                options: ["Aisha", "Khadijah", "Fatimah", "Zainab"],
+                answer: 1,
+                explanation: "Khadijah bint Khuwaylid was the first wife of Prophet Muhammad (PBUH).",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the Arabic term for 'God's oneness'?",
+                options: ["Risalah", "Akhirah", "Tawhid", "Jihad"],
+                answer: 2,
+                explanation: "Tawhid is the indivisible oneness concept of monotheism in Islam.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which angel is responsible for delivering revelations to the prophets?",
+                options: ["Angel Mika'il", "Angel Israfil", "Angel Jibril (Gabriel)", "Angel Azra'il"],
+                answer: 2,
+                explanation: "Angel Jibril (Gabriel) delivered God's messages to the prophets, including Prophet Muhammad (PBUH).",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the name of the farewell pilgrimage performed by Prophet Muhammad (PBUH)?",
+                options: ["Umrah", "Hajjat al-Wada", "Hajj al-Tamattu", "Hajj al-Qiran"],
+                answer: 1,
+                explanation: "Hajjat al-Wada' (The Farewell Pilgrimage) was Prophet Muhammad's only Hajj.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the Islamic term for 'Day of Judgment'?",
+                options: ["Dunya", "Barzakh", "Akhirah", "Jannah"],
+                answer: 2,
+                explanation: "Akhirah refers to the afterlife and the Day of Judgment.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which surah of the Quran is known as 'The Opening'?",
+                options: ["Surah Al-Baqarah", "Surah Al-Fatiha", "Surah Al-Ikhlas", "Surah An-Nas"],
+                answer: 1,
+                explanation: "Surah Al-Fatiha is the first chapter of the Quran and is recited in every prayer.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the minimum amount of wealth a Muslim must possess for Zakat to become obligatory?",
+                options: ["Nisab", "Sadaqah", "Fitra", "Kaffarah"],
+                answer: 0,
+                explanation: "Nisab is the minimum threshold of wealth that makes a Muslim liable to pay Zakat.",
+                difficulty: "medium"
+            },
+            {
+                question: "Who was the second Caliph of Islam, known for his justice?",
+                options: ["Ali ibn Abi Talib", "Uthman ibn Affan", "Umar ibn al-Khattab", "Abu Bakr as-Siddiq"],
+                answer: 2,
+                explanation: "Umar ibn al-Khattab was the second Caliph and was renowned for his just rule.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the Islamic term for 'struggle' or 'striving'?",
+                options: ["Salat", "Sawm", "Jihad", "Hajj"],
+                answer: 2,
+                explanation: "Jihad refers to the struggle or striving in the way of Allah.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which city became the first capital of the Islamic state?",
+                options: ["Makkah", "Jerusalem", "Madinah", "Damascus"],
+                answer: 2,
+                explanation: "Madinah became the capital after the Hijra.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the name of the prayer performed after the Isha (night) prayer during Ramadan?",
+                options: ["Fajr", "Dhuhr", "Asr", "Tarawih"],
+                answer: 3,
+                explanation: "Tarawih prayers are special congregational prayers performed during Ramadan nights.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the Islamic term for 'prophetic tradition' or 'sayings and actions of Prophet Muhammad (PBUH)'?",
+                options: ["Quran", "Ijma", "Qiyas", "Hadith"],
+                answer: 3,
+                explanation: "Hadith refers to the collection of traditions containing sayings of the prophet Muhammad (PBUH).",
+                difficulty: "medium"
+            },
+            {
+                question: "Which of the following is NOT one of the five pillars of Islam?",
+                options: ["Shahada (Declaration of Faith)", "Salat (Prayer)", "Jihad (Struggle)", "Zakat (Charity)"],
+                answer: 2,
+                explanation: "Jihad is an important concept but not one of the five core pillars.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the Islamic term for 'consensus of the Muslim community'?",
+                options: ["Ijma", "Qiyas", "Ijtihad", "Shura"],
+                answer: 0,
+                explanation: "Ijma refers to the consensus of the Muslim scholars or community on a religious issue.",
+                difficulty: "medium"
+            },
+            // Tough (7 questions)
+            {
+                question: "Who compiled the first complete collection of Hadith, Sahih al-Bukhari?",
+                options: ["Imam Muslim", "Imam Tirmidhi", "Imam Bukhari", "Imam Abu Dawood"],
+                answer: 2,
+                explanation: "Imam Bukhari compiled Sahih al-Bukhari, one of the most authentic Hadith collections.",
+                difficulty: "tough"
+            },
+            {
+                question: "What was the first mosque built in Islam?",
+                options: ["Masjid al-Haram", "Masjid an-Nabawi", "Masjid Quba", "Al-Aqsa Mosque"],
+                answer: 2,
+                explanation: "Masjid Quba, located just outside Madinah, was the first mosque built by Prophet Muhammad (PBUH) himself.",
+                difficulty: "tough"
+            },
+            {
+                question: "In which year did the Battle of Uhud take place?",
+                options: ["1 AH", "2 AH", "3 AH", "4 AH"],
+                answer: 2,
+                explanation: "The Battle of Uhud took place in 3 AH (625 CE).",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'revelation' or 'divine inspiration'?",
+                options: ["Wahy", "Sunnah", "Fiqh", "Sharia"],
+                answer: 0,
+                explanation: "Wahy is the divine revelation received by prophets from Allah.",
+                difficulty: "tough"
+            },
+            {
+                question: "Who was the third Caliph of Islam, known for compiling the Quran into a single volume?",
+                options: ["Ali ibn Abi Talib", "Umar ibn al-Khattab", "Uthman ibn Affan", "Abu Bakr as-Siddiq"],
+                answer: 2,
+                explanation: "Uthman ibn Affan oversaw the compilation and standardization of the Quran.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic legal term for 'analogy' used in deriving rulings when there is no direct text in the Quran or Sunnah?",
+                options: ["Ijma", "Ijtihad", "Qiyas", "Istihsan"],
+                answer: 2,
+                explanation: "Qiyas is a method of analogical deduction in Islamic jurisprudence.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which Islamic scholar is considered the 'Father of Algebra'?",
+                options: ["Al-Kindi", "Al-Farabi", "Al-Khwarizmi", "Ibn Sina"],
+                answer: 2,
+                explanation: "Muhammad ibn Musa al-Khwarizmi was a Persian polymath who introduced algebra.",
+                difficulty: "tough"
+            },
+            // Additional questions to reach 100 total
+            // GK (10 more medium, 10 more tough)
+            // Medium (10 questions)
+            {
+                question: "The Strait of Gibraltar connects the Atlantic Ocean with which sea?",
+                options: ["Mediterranean Sea", "North Sea", "Baltic Sea", "Black Sea"],
+                answer: 0,
+                explanation: "The Strait of Gibraltar is a narrow strait that connects the Atlantic Ocean to the Mediterranean Sea.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which is the largest artificial lake in Pakistan?",
+                options: ["Rawal Lake", "Keenjhar Lake", "Manchar Lake", "Tarbela Lake"],
+                answer: 1,
+                explanation: "Keenjhar Lake (also known as Kalri Lake) is the largest freshwater lake in Pakistan.",
+                difficulty: "medium"
+            },
+            {
+                question: "The Three Gorges Dam, the world's largest power station, is built on which river?",
+                options: ["Yellow River", "Mekong River", "Yangtze River", "Pearl River"],
+                answer: 2,
+                explanation: "The Three Gorges Dam is built on the Yangtze River in China.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which famous waterfall is located in the border region of Brazil and Argentina?",
+                options: ["Angel Falls", "Victoria Falls", "Iguazu Falls", "Niagara Falls"],
+                answer: 2,
+                explanation: "Iguazu Falls is located on the border of Brazil and Argentina.",
+                difficulty: "medium"
+            },
+            {
+                question: "The Port of Dubai is a major global cargo hub located in which country?",
+                options: ["Saudi Arabia", "Qatar", "UAE", "Oman"],
+                answer: 2,
+                explanation: "The Port of Jebel Ali, part of Dubai, is a major port in the United Arab Emirates.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which of the following is the largest lake in Africa by surface area?",
+                options: ["Lake Tanganyika", "Lake Malawi", "Lake Victoria", "Lake Chad"],
+                answer: 2,
+                explanation: "Lake Victoria is the largest lake in Africa by surface area.",
+                difficulty: "medium"
+            },
+            {
+                question: "The Grand Coulee Dam, a massive concrete gravity dam, is on which river in the USA?",
+                options: ["Mississippi River", "Colorado River", "Columbia River", "Missouri River"],
+                answer: 2,
+                explanation: "The Grand Coulee Dam is on the Columbia River in Washington state, USA.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which canal connects the Caspian Sea to the Black Sea via the Volga River?",
+                options: ["Suez Canal", "Kiel Canal", "Volga-Don Canal", "Erie Canal"],
+                answer: 2,
+                explanation: "The Volga-Don Canal connects the Volga River and the Don River, providing a link between the Caspian Sea and the Black Sea.",
+                difficulty: "medium"
+            },
+            {
+                question: "The Port of Long Beach is a major seaport in which US state?",
+                options: ["Florida", "Texas", "California", "New York"],
+                answer: 2,
+                explanation: "The Port of Long Beach is located in California, USA.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which lake is the largest lake in South America?",
+                options: ["Lake Titicaca", "Lake Maracaibo", "Lake Poopó", "Lake Nicaragua"],
+                answer: 1,
+                explanation: "Lake Maracaibo in Venezuela is the largest lake in South America.",
+                difficulty: "medium"
+            },
+            // Tough (10 questions)
+            {
+                question: "The Bosphorus Strait connects the Black Sea with which other sea?",
+                options: ["Aegean Sea", "Marmara Sea", "Mediterranean Sea", "Adriatic Sea"],
+                answer: 1,
+                explanation: "The Bosphorus Strait connects the Black Sea to the Sea of Marmara.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following is the world's highest waterfall by total height?",
+                options: ["Angel Falls", "Tugela Falls", "Three Sisters Falls", "Olo'upena Falls"],
+                answer: 0,
+                explanation: "Angel Falls in Venezuela is the world's highest uninterrupted waterfall.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Port of Felixstowe, the UK's busiest container port, is located in which county?",
+                options: ["Kent", "Essex", "Suffolk", "Norfolk"],
+                answer: 2,
+                explanation: "The Port of Felixstowe is located in Suffolk, England.",
+                difficulty: "tough"
+            },
+            {
+                question: "Lake Eyre, a large ephemeral lake, is located in which country?",
+                options: ["Australia", "Canada", "USA", "Kazakhstan"],
+                answer: 0,
+                explanation: "Lake Eyre is the largest lake in Australia when filled.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Chesapeake and Delaware Canal connects which two bodies of water?",
+                options: ["Chesapeake Bay and Delaware Bay", "Delaware River and Hudson River", "Atlantic Ocean and Pacific Ocean", "Great Lakes and Mississippi River"],
+                answer: 0,
+                explanation: "The C&D Canal connects the Chesapeake Bay with the Delaware Bay.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which lake is the largest freshwater lake in Southeast Asia?",
+                options: ["Lake Toba", "Tonlé Sap", "Lake Biwa", "Lake Lanao"],
+                answer: 1,
+                explanation: "Tonlé Sap in Cambodia is the largest freshwater lake in Southeast Asia.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Port of Shanghai is located at the mouth of which river?",
+                options: ["Yellow River", "Pearl River", "Yangtze River", "Xi River"],
+                answer: 2,
+                explanation: "The Port of Shanghai is situated at the mouth of the Yangtze River.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following is the deepest lake in North America?",
+                options: ["Lake Superior", "Great Slave Lake", "Crater Lake", "Lake Tahoe"],
+                answer: 1,
+                explanation: "Great Slave Lake in Canada is the deepest lake in North America.",
+                difficulty: "tough"
+            },
+            {
+                question: "The Panama Canal uses a system of locks to lift ships over which mountain range?",
+                options: ["Andes", "Rockies", "Continental Divide", "Appalachians"],
+                answer: 2,
+                explanation: "The Panama Canal cuts through the Continental Divide of Panama.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which waterfall is known as 'The Smoke' due to the mist it generates, located in Iceland?",
+                options: ["Skógafoss", "Seljalandsfoss", "Gullfoss", "Godafoss"],
+                answer: 2,
+                explanation: "Gullfoss, meaning 'Golden Falls', is also known as 'The Smoke' due to the spray it creates.",
+                difficulty: "tough"
+            },
+
+            // English (Prepositions) - Additional questions to reach 50 medium, 40 tough
+            // Medium (23 more questions)
+            {
+                question: "He is senior ______ me by two years.",
+                options: ["than", "to", "from", "over"],
+                answer: 1,
+                explanation: "'Senior to' is the correct comparative phrase.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is good ______ playing chess.",
+                options: ["in", "at", "on", "with"],
+                answer: 1,
+                explanation: "'Good at' is used for skills.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is suffering ______ fever.",
+                options: ["from", "with", "of", "by"],
+                answer: 0,
+                explanation: "'Suffering from' is used for illnesses.",
+                difficulty: "medium"
+            },
+            {
+                question: "I congratulated him ______ his success.",
+                options: ["for", "on", "about", "with"],
+                answer: 1,
+                explanation: "'Congratulate on' is the correct phrase.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is addicted ______ coffee.",
+                options: ["to", "for", "with", "of"],
+                answer: 0,
+                explanation: "'Addicted to' means having a strong habit or dependence.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is angry ______ what you said.",
+                options: ["with", "at", "about", "for"],
+                answer: 2,
+                explanation: "'Angry about' is used when angry about a situation or thing.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is afraid ______ heights.",
+                options: ["of", "from", "with", "by"],
+                answer: 0,
+                explanation: "'Afraid of' is the correct idiom.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is busy ______ his work.",
+                options: ["in", "with", "at", "on"],
+                answer: 1,
+                explanation: "'Busy with' is used to describe being occupied with a task.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is confident ______ her abilities.",
+                options: ["of", "in", "about", "with"],
+                answer: 0,
+                explanation: "'Confident of' is used to express certainty about one's abilities.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is keen ______ learning new things.",
+                options: ["on", "in", "about", "for"],
+                answer: 0,
+                explanation: "'Keen on' means enthusiastic about something.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is proud ______ her achievements.",
+                options: ["of", "for", "about", "with"],
+                answer: 0,
+                explanation: "'Proud of' is the correct phrase.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is responsible ______ his family.",
+                options: ["for", "to", "of", "with"],
+                answer: 0,
+                explanation: "'Responsible for' means being accountable for someone or something.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is interested ______ politics.",
+                options: ["in", "on", "at", "about"],
+                answer: 0,
+                explanation: "'Interested in' is the correct phrase.",
+                difficulty: "medium"
+            },
+            {
+                question: "She is annoyed ______ his behavior.",
+                options: ["with", "at", "by", "about"],
+                answer: 0,
+                explanation: "'Annoyed with' is used when annoyed at a person.",
+                difficulty: "medium"
+            },
+            {
+                question: "He was born ______ a poor family.",
+                options: ["in", "into", "of", "from"],
+                answer: 1,
+                explanation: "'Born into' is used for circumstances or families.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is capable ______ solving this problem.",
+                options: ["of", "in", "for", "with"],
+                answer: 0,
+                explanation: "'Capable of' is used to express ability.",
+                difficulty: "medium"
+            },
+            {
+                question: "She complained ______ the noise.",
+                options: ["to", "about", "at", "for"],
+                answer: 1,
+                explanation: "'Complain about' is used when complaining about a thing or situation.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is familiar ______ this software.",
+                options: ["with", "to", "about", "of"],
+                answer: 0,
+                explanation: "'Familiar with' means having knowledge or experience of something.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is known ______ his honesty.",
+                options: ["for", "as", "by", "of"],
+                answer: 0,
+                explanation: "'Known for' is used to describe a distinguishing quality.",
+                difficulty: "medium"
+            },
+            {
+                question: "She was surprised ______ his sudden arrival.",
+                options: ["at", "by", "with", "on"],
+                answer: 0,
+                explanation: "'Surprised at' is the correct idiom.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is engaged ______ a new project.",
+                options: ["in", "on", "with", "to"],
+                answer: 0,
+                explanation: "'Engaged in' means involved in an activity.",
+                difficulty: "medium"
+            },
+            {
+                question: "The dog jumped ______ the table.",
+                options: ["on", "onto", "over", "at"],
+                answer: 1,
+                explanation: "'Onto' indicates movement to a surface.",
+                difficulty: "medium"
+            },
+            {
+                question: "He is popular ______ his students.",
+                options: ["with", "among", "to", "by"],
+                answer: 0,
+                explanation: "'Popular with' is used to describe being liked by a group.",
+                difficulty: "medium"
+            },
+            // Tough (17 more questions)
+            {
+                question: "He is averse ______ hard work.",
+                options: ["to", "from", "at", "with"],
+                answer: 0,
+                explanation: "'Averse to' means having a strong dislike of or opposition to something.",
+                difficulty: "tough"
+            },
+            {
+                question: "The committee consists ______ seven members.",
+                options: ["of", "from", "in", "with"],
+                answer: 0,
+                explanation: "'Consist of' means to be made up or composed of.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is conversant ______ the rules of the game.",
+                options: ["with", "in", "about", "of"],
+                answer: 0,
+                explanation: "'Conversant with' means familiar with or knowledgeable about something.",
+                difficulty: "tough"
+            },
+            {
+                question: "She is endowed ______ many talents.",
+                options: ["with", "by", "in", "of"],
+                answer: 0,
+                explanation: "'Endowed with' means provided with a quality, ability, or asset.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is indulgent ______ his children.",
+                options: ["to", "of", "with", "towards"],
+                answer: 3,
+                explanation: "'Indulgent towards' means having a readiness to allow someone to have or do whatever they want.",
+                difficulty: "tough"
+            },
+            {
+                question: "The police inquired ______ the matter.",
+                options: ["into", "about", "of", "for"],
+                answer: 0,
+                explanation: "'Inquire into' means to investigate.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is oblivious ______ the danger.",
+                options: ["of", "to", "about", "from"],
+                answer: 0,
+                explanation: "'Oblivious of' or 'oblivious to' means not aware of or not concerned about what is happening around one.",
+                difficulty: "tough"
+            },
+            {
+                question: "She is proficient ______ French.",
+                options: ["in", "at", "with", "on"],
+                answer: 0,
+                explanation: "'Proficient in' is used for languages or subjects.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is susceptible ______ flattery.",
+                options: ["to", "of", "from", "with"],
+                answer: 0,
+                explanation: "'Susceptible to' means easily influenced or harmed by something.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is vexed ______ his continuous complaints.",
+                options: ["at", "with", "by", "about"],
+                answer: 0,
+                explanation: "'Vexed at' is used when annoyed at a situation or thing.",
+                difficulty: "tough"
+            },
+            {
+                question: "The novel abounds ______ errors.",
+                options: ["in", "with", "from", "of"],
+                answer: 0,
+                explanation: "'Abound in' means to be plentiful in something.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is amenable ______ reason.",
+                options: ["to", "with", "for", "of"],
+                answer: 0,
+                explanation: "'Amenable to' means open and responsive to suggestion; easily persuaded or controlled.",
+                difficulty: "tough"
+            },
+            {
+                question: "She is cognizant ______ the risks involved.",
+                options: ["of", "about", "with", "in"],
+                answer: 0,
+                explanation: "'Cognizant of' means having knowledge or being aware of.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is imbued ______ a sense of duty.",
+                options: ["with", "in", "by", "from"],
+                answer: 0,
+                explanation: "'Imbued with' means deeply inspired by a feeling or quality.",
+                difficulty: "tough"
+            },
+            {
+                question: "The decision is incumbent ______ him.",
+                options: ["on", "upon", "to", "for"],
+                answer: 0,
+                explanation: "'Incumbent on/upon' means necessary for (someone) as a duty or responsibility.",
+                difficulty: "tough"
+            },
+            {
+                question: "He is partial ______ his younger son.",
+                options: ["to", "towards", "for", "with"],
+                answer: 0,
+                explanation: "'Partial to' means having a strong liking for something or someone.",
+                difficulty: "tough"
+            },
+            {
+                question: "The city is replete ______ historical monuments.",
+                options: ["with", "in", "of", "by"],
+                answer: 0,
+                explanation: "'Replete with' means filled or well-supplied with something.",
+                difficulty: "tough"
+            },
+
+            // Islamic Studies (IS) - Additional questions to reach 40 tough
+            // Medium (7 more questions)
+            {
+                question: "What is the name of the cave where Prophet Muhammad (PBUH) received his first revelation?",
+                options: ["Cave of Thawr", "Cave of Hira", "Cave of Uhud", "Cave of Arafat"],
+                answer: 1,
+                explanation: "Prophet Muhammad (PBUH) received his first revelation in the Cave of Hira on Jabal al-Nour (Mountain of Light).",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the Arabic word for 'prayer mat'?",
+                options: ["Tasbih", "Sajjadah", "Miswak", "Qibla"],
+                answer: 1,
+                explanation: "Sajjadah is a prayer mat used by Muslims during Salat.",
+                difficulty: "medium"
+            },
+            {
+                question: "How many chapters (Surahs) are there in the Holy Quran?",
+                options: ["110", "112", "114", "116"],
+                answer: 2,
+                explanation: "The Holy Quran consists of 114 Surahs.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the name of the angel of death in Islam?",
+                options: ["Jibril", "Mika'il", "Israfil", "Azra'il"],
+                answer: 3,
+                explanation: "Azra'il is the angel of death in Islam, also known as Malak al-Maut.",
+                difficulty: "medium"
+            },
+            {
+                question: "Which of the following is considered the 'heart of the Quran'?",
+                options: ["Surah Al-Baqarah", "Surah Ya-Sin", "Surah Al-Kahf", "Surah Ar-Rahman"],
+                answer: 1,
+                explanation: "Surah Ya-Sin is widely regarded as the 'heart of the Quran'.",
+                difficulty: "medium"
+            },
+            {
+                question: "What is the Islamic term for 'charity given to the poor and needy, usually during Ramadan'?",
+                options: ["Zakat", "Sadaqah", "Fitra", "Kaffarah"],
+                answer: 2,
+                explanation: "Fitra (Zakat al-Fitr) is a charity given to the poor at the end of Ramadan.",
+                difficulty: "medium"
+            },
+            {
+                question: "Who was the maternal grandfather of Prophet Muhammad (PBUH)?",
+                options: ["Abd al-Muttalib", "Abu Talib", "Wahb ibn Abd Manaf", "Abdullah ibn Abd al-Muttalib"],
+                answer: 2,
+                explanation: "Wahb ibn Abd Manaf was the maternal grandfather of Prophet Muhammad (PBUH).",
+                difficulty: "medium"
+            },
+            // Tough (20 more questions)
+            {
+                question: "Which of the following battles is also known as the 'Battle of the Trench'?",
+                options: ["Battle of Badr", "Battle of Uhud", "Battle of Khandaq", "Battle of Khaybar"],
+                answer: 2,
+                explanation: "The Battle of Khandaq (Ditch) involved digging a trench around Madinah.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'interpretation of the Quran'?",
+                options: ["Hadith", "Fiqh", "Tafsir", "Sunnah"],
+                answer: 2,
+                explanation: "Tafsir is the exegesis or interpretation of the Quran.",
+                difficulty: "tough"
+            },
+            {
+                question: "Who was the fourth Caliph of Islam and cousin/son-in-law of Prophet Muhammad (PBUH)?",
+                options: ["Abu Bakr", "Umar", "Uthman", "Ali"],
+                answer: 3,
+                explanation: "Ali ibn Abi Talib was the fourth Rashidun Caliph.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'divine decree' or 'predestination'?",
+                options: ["Qadar", "Tawakkul", "Shura", "Ijtehad"],
+                answer: 0,
+                explanation: "Qadar refers to the divine decree or predestination in Islam.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following is NOT one of the 'Ashara Mubashara' (The Ten Promised Paradise)?",
+                options: ["Abu Bakr as-Siddiq", "Umar ibn al-Khattab", "Khalid ibn al-Walid", "Ali ibn Abi Talib"],
+                answer: 2,
+                explanation: "Khalid ibn al-Walid was a great general but not among the ten promised paradise.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for a 'legal opinion' or 'ruling' issued by an Islamic scholar?",
+                options: ["Fatwa", "Hadith", "Ijma", "Qiyas"],
+                answer: 0,
+                explanation: "A Fatwa is a non-binding legal opinion on a point of Islamic law.",
+                difficulty: "tough"
+            },
+            {
+                question: "In which year was the Treaty of Hudaybiyyah signed?",
+                options: ["5 AH", "6 AH", "7 AH", "8 AH"],
+                answer: 1,
+                explanation: "The Treaty of Hudaybiyyah was signed in 6 AH (628 CE) between Prophet Muhammad (PBUH) and the Quraish of Makkah.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'analogy' used in deriving rulings when there is no direct text in the Quran or Sunnah?",
+                options: ["Ijma", "Ijtihad", "Qiyas", "Istihsan"],
+                answer: 2,
+                explanation: "Qiyas is a method of analogical deduction in Islamic jurisprudence.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following is NOT one of the 'Ummul Mu'minin' (Mothers of the Believers)?",
+                options: ["Aisha bint Abi Bakr", "Hafsa bint Umar", "Fatimah bint Muhammad", "Umm Salama Hind bint Abi Umayya"],
+                answer: 2,
+                explanation: "Fatimah was Prophet Muhammad's daughter, not one of his wives.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'seeking forgiveness from Allah'?",
+                options: ["Dua", "Istighfar", "Tawbah", "Shukr"],
+                answer: 1,
+                explanation: "Istighfar is the act of seeking forgiveness from Allah.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which battle is known for the martyrdom of Hamza ibn Abd al-Muttalib, Prophet Muhammad's uncle?",
+                options: ["Battle of Badr", "Battle of Uhud", "Battle of Khandaq", "Battle of Hunayn"],
+                answer: 1,
+                explanation: "Hamza was martyred in the Battle of Uhud.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'consultation' or 'mutual deliberation'?",
+                options: ["Ijma", "Shura", "Qiyas", "Ijtihad"],
+                answer: 1,
+                explanation: "Shura is the principle of consultation in Islamic governance.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which companion of Prophet Muhammad (PBUH) is known as 'Sayyid al-Shuhada' (Master of Martyrs)?",
+                options: ["Ali ibn Abi Talib", "Umar ibn al-Khattab", "Hamza ibn Abd al-Muttalib", "Uthman ibn Affan"],
+                answer: 2,
+                explanation: "Hamza ibn Abd al-Muttalib was given the title 'Sayyid al-Shuhada' after his martyrdom in the Battle of Uhud.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'the path' or 'the way'?",
+                options: ["Sunnah", "Sharia", "Fiqh", "Hadith"],
+                answer: 1,
+                explanation: "Sharia refers to the Islamic law derived from the Quran and Sunnah, guiding Muslims in all aspects of life.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which of the following is the Islamic term for 'hypocrites'?",
+                options: ["Mushrikun", "Kafiroon", "Munafiqoon", "Fasiqoon"],
+                answer: 2,
+                explanation: "Munafiqoon refers to those who outwardly profess Islam but inwardly conceal disbelief.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'the house of wisdom', a major intellectual center during the Islamic Golden Age?",
+                options: ["Dar al-Hikma", "Bayt al-Mal", "Madrasa", "Jami'ah"],
+                answer: 0,
+                explanation: "Dar al-Hikma (House of Wisdom) was a major library and translation center in Baghdad.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which Islamic festival marks the end of Ramadan?",
+                options: ["Eid al-Adha", "Eid al-Fitr", "Ashura", "Mawlid"],
+                answer: 1,
+                explanation: "Eid al-Fitr celebrates the end of the fasting month of Ramadan.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the maximum number of wives a Muslim man is permitted to have at one time, according to Islamic law?",
+                options: ["One", "Two", "Three", "Four"],
+                answer: 3,
+                explanation: "A Muslim man may have up to four wives simultaneously, provided he treats them all justly.",
+                difficulty: "tough"
+            },
+            {
+                question: "What is the Islamic term for 'the call to prayer'?",
+                options: ["Iqamah", "Adhan", "Takbir", "Tasbih"],
+                answer: 1,
+                explanation: "Adhan is the Islamic call to prayer, recited by the muezzin.",
+                difficulty: "tough"
+            },
+            {
+                question: "Which Islamic month is known as the month of pilgrimage?",
+                options: ["Shawwal", "Dhul Qa'dah", "Dhul Hijjah", "Muharram"],
+                answer: 2,
+                explanation: "Dhul Hijjah is the twelfth and final month in the Islamic calendar, during which the annual Hajj pilgrimage takes place.",
+                difficulty: "tough"
+            }
+        ];
+
+        // Shuffle questions and assign "special question"
+        let quizQuestions = [];
+        let specialQuestionIndex = -1;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function initializeQuizQuestions() {
+            // Separate questions by difficulty
+            const easyQuestions = allQuizQuestions.filter(q => q.difficulty === 'easy');
+            const mediumQuestions = allQuizQuestions.filter(q => q.difficulty === 'medium');
+            const toughQuestions = allQuizQuestions.filter(q => q.difficulty === 'tough');
+
+            // Shuffle each difficulty pool
+            const shuffledEasy = shuffleArray(easyQuestions);
+            const shuffledMedium = shuffleArray(mediumQuestions);
+            const shuffledTough = shuffleArray(toughQuestions);
+
+            // Select the required number of questions
+            const selectedEasy = shuffledEasy.slice(0, 10);
+            const selectedMedium = shuffledMedium.slice(0, 50);
+            const selectedTough = shuffledTough.slice(0, 40);
+
+            // Combine and shuffle the final set of 100 questions
+            quizQuestions = shuffleArray([...selectedEasy, ...selectedMedium, ...selectedTough]);
+
+            // Ensure exactly 100 questions
+            if (quizQuestions.length !== 100) {
+                showModal("Error: Could not generate exactly 100 unique questions. Please refresh.", "alert");
+                return;
+            }
+
+            // Randomly select one "Today's Special Question" if it's the current date
+            const today = new Date();
+            const quizDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // Normalize to start of day
+            const storedQuizDate = localStorage.getItem('quiz_date');
+
+            if (!storedQuizDate || new Date(storedQuizDate).toDateString() !== quizDate.toDateString()) {
+                // New day or no stored date, generate new special question and store date
+                specialQuestionIndex = Math.floor(Math.random() * quizQuestions.length);
+                localStorage.setItem('special_question_index', specialQuestionIndex);
+                localStorage.setItem('quiz_date', quizDate.toISOString());
+            } else {
+                // Same day, retrieve stored special question
+                specialQuestionIndex = parseInt(localStorage.getItem('special_question_index'));
+            }
+
+            // Mark the special question
+            if (quizQuestions[specialQuestionIndex]) {
+                quizQuestions[specialQuestionIndex].isSpecial = true;
+            }
+        }
+
+
+        // DOM Elements
+        const loginPage = document.getElementById('login-page');
+        const candidateInfoPage = document.getElementById('candidate-info-page');
+        const quizPage = document.getElementById('quiz-page');
+        const resultsPage = document.getElementById('results-page');
+
+        const loginButton = document.getElementById('login-button');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginError = document.getElementById('login-error');
+
+        const fullNameInput = document.getElementById('full-name');
+        const startQuizButton = document.getElementById('start-quiz-button');
+        const nameError = document.getElementById('name-error');
+
+        const liveDateSpan = document.querySelector('#live-date span');
+        const quizDateTitleSpan = document.getElementById('quiz-date-title');
+        const updatedDateSpan = document.getElementById('updated-date');
+        const timerSpan = document.getElementById('timer');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        const questionNumberSpan = document.getElementById('question-number');
+        const questionTextSpan = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanationContainer = document.getElementById('explanation-container');
+        const explanationText = document.getElementById('explanation-text');
+        const questionCard = document.getElementById('question-card');
+
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        const resultNameSpan = document.getElementById('result-name');
+        const resultScoreSpan = document.getElementById('result-score');
+        const resultTimeSpan = document.getElementById('result-time');
+        const resultAttemptedSpan = document.getElementById('result-attempted');
+        const retakeQuizButton = document.getElementById('retake-quiz-button');
+
+        // Functions
+        function updateLiveDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            liveDateSpan.textContent = formattedDate;
+            quizDateTitleSpan.textContent = formattedDate;
+            updatedDateSpan.textContent = formattedDate;
+        }
+
+        function startTimer() {
+            quizStartTime = Date.now();
+            timerInterval = setInterval(() => {
+                timeElapsed++;
+                const remainingSeconds = quizDuration - timeElapsed;
+
+                if (remainingSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    timerSpan.textContent = "00:00";
+                    if (!quizCompleted) {
+                        showModal("Time's up! Your quiz will be submitted.", "alert", submitQuiz);
+                    }
+                } else {
+                    const minutes = Math.floor(remainingSeconds / 60);
+                    const seconds = remainingSeconds % 60;
+                    timerSpan.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+
+        function updateProgressBar() {
+            const progress = (currentQuestionIndex / quizQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        function loadQuestion(index) {
+            if (index >= 0 && index < quizQuestions.length) {
+                currentQuestionIndex = index;
+                const question = quizQuestions[currentQuestionIndex];
+
+                // Update question card styling for special question
+                questionCard.style.border = question.isSpecial && isCurrentDate() ? '4px solid #FFD700' : '1px solid #FFF5EE';
+
+                questionNumberSpan.textContent = currentQuestionIndex + 1;
+                questionTextSpan.textContent = question.question;
+                optionsContainer.innerHTML = ''; // Clear previous options
+                explanationContainer.classList.add('hidden'); // Hide explanation by default
+                explanationText.textContent = '';
+
+                // Shuffle options for the current question
+                const shuffledOptions = shuffleArray([...question.options]);
+                question.shuffledOptions = shuffledOptions; // Store shuffled order
+
+                shuffledOptions.forEach((option, i) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.classList.add('option-card', 'p-3', 'rounded-lg', 'shadow-md', 'cursor-pointer', 'bg-white', 'hover:bg-gray-50', 'text-primary', 'font-medium', 'border', 'border-gray-200');
+                    optionDiv.textContent = option;
+                    optionDiv.dataset.optionIndex = question.options.indexOf(option); // Store original index
+                    optionDiv.addEventListener('click', () => selectOption(optionDiv, question.answer));
+                    optionsContainer.appendChild(optionDiv);
+
+                    // Restore previous selection if exists
+                    if (userAnswers[currentQuestionIndex] !== undefined && userAnswers[currentQuestionIndex] == optionDiv.dataset.optionIndex) {
+                        optionDiv.classList.add('bg-blue-200', 'border-blue-500'); // Highlight selected
+                    }
+                });
+
+                updateNavigationButtons();
+                updateProgressBar();
+            }
+        }
+
+        function selectOption(selectedDiv, correctAnswerOriginalIndex) {
+            // Prevent multiple selections for the same question
+            if (userAnswers[currentQuestionIndex] !== undefined) {
+                return;
+            }
+
+            const selectedOptionOriginalIndex = parseInt(selectedDiv.dataset.optionIndex);
+            userAnswers[currentQuestionIndex] = selectedOptionOriginalIndex; // Store the selected answer
+
+            questionsAttempted++; // Increment attempted count
+
+            // Disable all options after selection
+            Array.from(optionsContainer.children).forEach(option => {
+                option.style.pointerEvents = 'none';
+                option.classList.remove('hover:bg-gray-50'); // Remove hover effect
+                option.classList.remove('hover:scale-105'); // Remove hover scale
+            });
+
+            // Check answer and apply effects
+            if (selectedOptionOriginalIndex === correctAnswerOriginalIndex) {
+                selectedDiv.classList.add('pulse-green', 'bg-green-200', 'border-green-500');
+                score++;
+            } else {
+                selectedDiv.classList.add('shake-red', 'bg-red-200', 'border-red-500');
+                // Highlight correct answer
+                Array.from(optionsContainer.children).forEach(option => {
+                    if (parseInt(option.dataset.optionIndex) === correctAnswerOriginalIndex) {
+                        option.classList.add('bg-green-200', 'border-green-500');
+                    }
+                });
+            }
+
+            // Show explanation
+            explanationText.textContent = quizQuestions[currentQuestionIndex].explanation;
+            explanationContainer.classList.remove('hidden');
+        }
+
+        function updateNavigationButtons() {
+            prevButton.disabled = currentQuestionIndex === 0;
+            prevButton.classList.toggle('opacity-50', currentQuestionIndex === 0);
+            prevButton.classList.toggle('cursor-not-allowed', currentQuestionIndex === 0);
+            prevButton.classList.toggle('cursor-pointer', currentQuestionIndex !== 0);
+
+            if (currentQuestionIndex === quizQuestions.length - 1) {
+                nextButton.textContent = 'Submit Quiz';
+            } else {
+                nextButton.textContent = 'Next';
+            }
+        }
+
+        function navigateQuestions(direction) {
+            if (direction === 'next') {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion(currentQuestionIndex);
+                } else {
+                    // Last question, submit quiz
+                    if (!quizCompleted) {
+                        showModal("Are you sure you want to submit the quiz?", "confirm", (confirmed) => {
+                            if (confirmed) {
+                                submitQuiz();
+                            }
+                        });
+                    }
+                }
+            } else if (direction === 'prev') {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    loadQuestion(currentQuestionIndex);
+                }
+            }
+        }
+
+        function submitQuiz() {
+            quizCompleted = true;
+            clearInterval(timerInterval); // Stop the timer
+
+            // Calculate final time taken
+            const finalTimeSeconds = timeElapsed;
+            const finalMinutes = Math.floor(finalTimeSeconds / 60);
+            const finalSeconds = finalTimeSeconds % 60;
+            const formattedFinalTime = `${finalMinutes.toString().padStart(2, '0')}:${finalSeconds.toString().padStart(2, '0')}`;
+
+            // Display results
+            resultNameSpan.textContent = userName;
+            resultScoreSpan.textContent = score;
+            resultTimeSpan.textContent = formattedFinalTime;
+            resultAttemptedSpan.textContent = questionsAttempted;
+
+            quizPage.classList.add('hidden');
+            resultsPage.classList.remove('hidden');
+
+            // Auto-submit to Formspree
+            const formData = new FormData();
+            formData.append('Full Name', userName);
+            formData.append('Total Score', `${score} / 100`);
+            formData.append('Time Taken', formattedFinalTime);
+            formData.append('Questions Attempted', questionsAttempted);
+
+            fetch('https://formspree.io/f/xwpvddea', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Quiz results submitted successfully!');
+                } else {
+                    console.error('Failed to submit quiz results.');
+                }
+            }).catch(error => {
+                console.error('Error submitting quiz results:', error);
+            });
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAttempted = 0;
+            timeElapsed = 0;
+            userName = '';
+            quizCompleted = false;
+            Object.keys(userAnswers).forEach(key => delete userAnswers[key]); // Clear answers
+            clearInterval(timerInterval);
+            timerSpan.textContent = "40:00"; // Reset timer display
+            progressBar.style.width = '0%';
+            progressText.textContent = '0%';
+            loginPage.classList.remove('hidden');
+            resultsPage.classList.add('hidden');
+            candidateInfoPage.classList.add('hidden');
+            quizPage.classList.add('hidden');
+            usernameInput.value = '';
+            passwordInput.value = '';
+            fullNameInput.value = '';
+            loginError.classList.add('hidden');
+            nameError.classList.add('hidden');
+            initializeQuizQuestions(); // Re-initialize questions for a new session
+        }
+
+        function isCurrentDate() {
+            const today = new Date();
+            const quizDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const storedQuizDate = localStorage.getItem('quiz_date');
+            return storedQuizDate && new Date(storedQuizDate).toDateString() === quizDate.toDateString();
+        }
+
+        // Event Listeners
+        loginButton.addEventListener('click', () => {
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if (username === '27MAY' && password === 'free') {
+                loginPage.classList.add('hidden');
+                candidateInfoPage.classList.remove('hidden');
+                loginError.classList.add('hidden');
+            } else {
+                loginError.classList.remove('hidden');
+            }
+        });
+
+        startQuizButton.addEventListener('click', () => {
+            const enteredName = fullNameInput.value.trim();
+            if (enteredName) {
+                userName = enteredName;
+                candidateInfoPage.classList.add('hidden');
+                quizPage.classList.remove('hidden');
+                nameError.classList.add('hidden');
+                startTimer();
+                loadQuestion(currentQuestionIndex);
+            } else {
+                nameError.classList.remove('hidden');
+            }
+        });
+
+        nextButton.addEventListener('click', () => navigateQuestions('next'));
+        prevButton.addEventListener('click', () => navigateQuestions('prev'));
+        retakeQuizButton.addEventListener('click', resetQuiz);
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLiveDate();
+            initializeQuizQuestions(); // Generate and shuffle questions once
+        });
+
+        // Handle mobile sticky date position
+        window.addEventListener('resize', () => {
+            const liveDateElement = document.getElementById('live-date');
+            if (window.innerWidth < 768) {
+                liveDateElement.classList.remove('justify-end');
+                liveDateElement.classList.add('justify-start');
+            } else {
+                liveDateElement.classList.remove('justify-start');
+                liveDateElement.classList.add('justify-end');
+            }
+        });
+        // Initial call to set correct sticky date position on load
+        window.dispatchEvent(new Event('resize'));
+
+    </script>
+</body>
+</html>
