@@ -312,1340 +312,935 @@
         // Note: Difficulty is a subjective categorization by the LLM based on perceived complexity.
         // Explanations are simplified for brevity and clarity.
         const allQuizQuestions = [
-            // General Knowledge (GK) - World Geography (Canals, Lakes, Waterfalls, Seaports) - Aim for ~33 questions
-            // Easy (3 questions)
+            // General Knowledge (GK) - World Geography (Part 4: Important Rivers, Glaciers, Volcanoes, Highest and Lowest Points)
             {
-                question: "Which is the longest man-made waterway in the world?",
-                options: ["Suez Canal", "Panama Canal", "Grand Canal (China)", "Kiel Canal"],
+                question: "Which is the longest river in the world?",
+                options: ["Amazon", "Nile", "Yangtze", "Mississippi"],
+                answer: 1,
+                explanation: "The Nile River is generally considered the longest river in the world.",
+                difficulty: "easy", source_page: 30
+            },
+            {
+                question: "Mount Everest is the highest peak in which mountain range?",
+                options: ["Andes", "Rockies", "Himalayas", "Alps"],
                 answer: 2,
-                explanation: "The Grand Canal of China is the longest man-made waterway.",
-                difficulty: "easy"
+                explanation: "Mount Everest is part of the Himalayan mountain range.",
+                difficulty: "easy", source_page: 31
             },
             {
-                question: "Lake Superior is the largest freshwater lake by surface area in which continent?",
-                options: ["Asia", "Africa", "North America", "Europe"],
+                question: "Which ocean contains the Mariana Trench, the deepest known part of the world's oceans?",
+                options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
                 answer: 2,
-                explanation: "Lake Superior, part of the Great Lakes, is located in North America.",
-                difficulty: "easy"
+                explanation: "The Mariana Trench is located in the western Pacific Ocean.",
+                difficulty: "easy", source_page: 32
             },
             {
-                question: "Victoria Falls is located on the border of Zambia and which other country?",
-                options: ["Zimbabwe", "Botswana", "South Africa", "Tanzania"],
-                answer: 0,
-                explanation: "Victoria Falls is on the Zambezi River, at the border of Zambia and Zimbabwe.",
-                difficulty: "easy"
-            },
-            // Medium (10 questions)
-            {
-                question: "The Suez Canal connects the Mediterranean Sea with which other body of water?",
-                options: ["Atlantic Ocean", "Red Sea", "Black Sea", "Indian Ocean"],
-                answer: 1,
-                explanation: "The Suez Canal provides a direct route between the Mediterranean Sea and the Red Sea.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which of the following is the deepest lake in the world?",
-                options: ["Lake Baikal", "Lake Tanganyika", "Caspian Sea", "Lake Vostok"],
-                answer: 0,
-                explanation: "Lake Baikal in Siberia, Russia, is the deepest and oldest freshwater lake in the world.",
-                difficulty: "medium"
-            },
-            {
-                question: "The Panama Canal connects the Atlantic Ocean with which ocean?",
-                options: ["Indian Ocean", "Pacific Ocean", "Arctic Ocean", "Southern Ocean"],
-                answer: 1,
-                explanation: "The Panama Canal links the Atlantic Ocean (via the Caribbean Sea) and the Pacific Ocean.",
-                difficulty: "medium"
-            },
-            {
-                question: "Angel Falls, the world's highest uninterrupted waterfall, is located in which country?",
-                options: ["Brazil", "Venezuela", "Argentina", "Canada"],
-                answer: 1,
-                explanation: "Angel Falls is located in Canaima National Park, Bolívar State, Venezuela.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which of these is a major seaport in Germany?",
-                options: ["Rotterdam", "Antwerp", "Hamburg", "Marseille"],
+                question: "The Amazon River flows through which continent?",
+                options: ["Africa", "Asia", "South America", "Europe"],
                 answer: 2,
-                explanation: "Hamburg is a major port city in northern Germany.",
-                difficulty: "medium"
+                explanation: "The Amazon River is primarily located in South America.",
+                difficulty: "medium", source_page: 30
             },
             {
-                question: "The Great Lakes of North America consist of Superior, Michigan, Huron, Erie, and what other lake?",
-                options: ["Lake Ontario", "Lake Winnipeg", "Great Slave Lake", "Lake Tahoe"],
-                answer: 0,
-                explanation: "The five Great Lakes are Superior, Michigan, Huron, Erie, and Ontario.",
-                difficulty: "medium"
+                question: "Siachen Glacier, one of the longest glaciers outside the polar regions, is located in which mountain range?",
+                options: ["Hindu Kush", "Karakoram", "Pamir", "Himalayas"],
+                answer: 1,
+                explanation: "The Siachen Glacier is in the eastern Karakoram range in the Himalayas.",
+                difficulty: "medium", source_page: 31
             },
             {
-                question: "Which canal separates the North Island and South Island of New Zealand?",
-                options: ["Cook Strait", "Foveaux Strait", "Bass Strait", "Torres Strait"],
-                answer: 0,
-                explanation: "The Cook Strait separates New Zealand's North and South Islands.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which African lake is the second largest freshwater lake by surface area in the world?",
-                options: ["Lake Victoria", "Lake Tanganyika", "Lake Malawi", "Lake Chad"],
-                answer: 0,
-                explanation: "Lake Victoria is the largest lake in Africa and the second-largest freshwater lake in the world by surface area.",
-                difficulty: "medium"
-            },
-            {
-                question: "The Port of Shanghai is the busiest container port in the world, located in which country?",
-                options: ["Japan", "South Korea", "China", "Singapore"],
+                question: "Mount Vesuvius, a famous active volcano, is located near which Italian city?",
+                options: ["Rome", "Milan", "Naples", "Florence"],
                 answer: 2,
-                explanation: "The Port of Shanghai is located in China and is the world's busiest container port.",
-                difficulty: "medium"
+                explanation: "Mount Vesuvius overlooks the Bay of Naples in Italy.",
+                difficulty: "medium", source_page: 31
             },
             {
-                question: "Niagara Falls is located on the border between the USA and which other country?",
-                options: ["Mexico", "Canada", "Cuba", "Russia"],
+                question: "The lowest point on land in Africa, Lake Assal, is located in which country?",
+                options: ["Ethiopia", "Djibouti", "Kenya", "Somalia"],
                 answer: 1,
-                explanation: "Niagara Falls is a group of three waterfalls at the southern end of Niagara Gorge, spanning the border between the Canadian province of Ontario and the US state of New York.",
-                difficulty: "medium"
-            },
-            // Tough (20 questions)
-            {
-                question: "The Corinth Canal, a narrow waterway, connects the Gulf of Corinth with the Saronic Gulf in which country?",
-                options: ["Greece", "Italy", "Turkey", "Egypt"],
-                answer: 0,
-                explanation: "The Corinth Canal is a canal that connects the Gulf of Corinth with the Saronic Gulf in the Aegean Sea, cutting through the narrow Isthmus of Corinth.",
-                difficulty: "tough"
+                explanation: "Lake Assal is a crater lake in central Djibouti.",
+                difficulty: "medium", source_page: 32
             },
             {
-                question: "Which of the following lakes is known for being the lowest point on Earth's land surface?",
-                options: ["Lake Van", "Dead Sea", "Lake Assal", "Caspian Sea"],
-                answer: 1,
-                explanation: "The Dead Sea, bordering Jordan and Israel, is Earth's lowest elevation on land.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Strait of Malacca, a crucial shipping lane, connects the Indian Ocean with which sea?",
-                options: ["South China Sea", "Arabian Sea", "Bay of Bengal", "Andaman Sea"],
-                answer: 0,
-                explanation: "The Strait of Malacca is a narrow stretch of water, 805 km (500 mi) in length, between the Malay Peninsula and the Indonesian island of Sumatra. It connects the Indian Ocean to the South China Sea.",
-                difficulty: "tough"
-            },
-            {
-                question: "Kaieteur Falls, a large single-drop waterfall, is located in the rainforests of which South American country?",
-                options: ["Peru", "Ecuador", "Guyana", "Colombia"],
+                question: "Which river is known as the 'Yellow River' and is significant to Chinese civilization?",
+                options: ["Yangtze River", "Mekong River", "Huang He", "Pearl River"],
                 answer: 2,
-                explanation: "Kaieteur Falls is a massive waterfall on the Potaro River in Guyana.",
-                difficulty: "tough"
+                explanation: "The Huang He (Yellow River) is the second-longest river in Asia and the sixth-longest in the world.",
+                difficulty: "medium", source_page: 30
             },
             {
-                question: "Which major European seaport is located at the mouth of the River Elbe?",
-                options: ["Antwerp", "Rotterdam", "Hamburg", "Bremen"],
+                question: "K2, the second-highest mountain in the world, is also known as what?",
+                options: ["Mount Godwin Austen", "Mount Logan", "Kangchenjunga", "Lhotse"],
+                answer: 0,
+                explanation: "K2 is also known as Mount Godwin Austen.",
+                difficulty: "medium", source_page: 31
+            },
+            {
+                question: "The deepest part of the Atlantic Ocean is the Puerto Rico Trench, located near which island?",
+                options: ["Cuba", "Jamaica", "Hispaniola", "Puerto Rico"],
+                answer: 3,
+                explanation: "The Puerto Rico Trench is located on the boundary between the Caribbean Sea and the Atlantic Ocean.",
+                difficulty: "medium", source_page: 32
+            },
+            {
+                question: "Which river is often called the 'Lifeline of Pakistan'?",
+                options: ["Jhelum", "Chenab", "Ravi", "Indus"],
+                answer: 3,
+                explanation: "The Indus River is the longest river in Pakistan and is considered its 'lifeline'.",
+                difficulty: "medium", source_page: 30
+            },
+            {
+                question: "The longest glacier in the world outside the polar regions is the Fedchenko Glacier, located in which country?",
+                options: ["Nepal", "Tajikistan", "Pakistan", "China"],
+                answer: 1,
+                explanation: "The Fedchenko Glacier is a large glacier in the Pamir Mountains of Tajikistan.",
+                difficulty: "medium", source_page: 31
+            },
+            {
+                question: "Mount Fuji is the highest peak in which country?",
+                options: ["South Korea", "Japan", "China", "Vietnam"],
+                answer: 1,
+                explanation: "Mount Fuji is Japan's highest mountain.",
+                difficulty: "medium", source_page: 31
+            },
+            {
+                question: "The longest river in Asia is the Yangtze, flowing entirely within which country?",
+                options: ["India", "Russia", "China", "Vietnam"],
                 answer: 2,
-                explanation: "The Port of Hamburg is a seaport on the River Elbe in Hamburg, Germany.",
-                difficulty: "tough"
+                explanation: "The Yangtze River is the longest river in Asia and the third-longest in the world, flowing entirely within China.",
+                difficulty: "tough", source_page: 30
             },
             {
-                question: "Lake Titicaca, one of the highest navigable lakes in the world, is located on the border of Peru and which other country?",
-                options: ["Bolivia", "Chile", "Ecuador", "Colombia"],
-                answer: 0,
-                explanation: "Lake Titicaca is located in the Andes mountains, on the border of Peru and Bolivia.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Grand Canal of China connects which two major rivers?",
-                options: ["Yellow River and Yangtze River", "Pearl River and Yellow River", "Yangtze River and Xi River", "Mekong River and Red River"],
-                answer: 0,
-                explanation: "The Grand Canal connects the Yellow River and the Yangtze River.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the name of the artificial waterway connecting the North Sea to the Baltic Sea?",
-                options: ["Suez Canal", "Kiel Canal", "Panama Canal", "Erie Canal"],
+                question: "Perito Moreno Glacier, a major tourist attraction, is located in which South American country?",
+                options: ["Chile", "Argentina", "Bolivia", "Peru"],
                 answer: 1,
-                explanation: "The Kiel Canal is an artificial waterway in Germany that connects the North Sea and the Baltic Sea.",
-                difficulty: "tough"
+                explanation: "The Perito Moreno Glacier is located in Los Glaciares National Park in southwest Santa Cruz Province, Argentina.",
+                difficulty: "tough", source_page: 31
             },
             {
-                question: "Which lake is the largest lake entirely within Canada?",
-                options: ["Great Bear Lake", "Great Slave Lake", "Lake Winnipeg", "Lake Athabasca"],
-                answer: 0,
-                explanation: "Great Bear Lake is the largest lake entirely within Canada.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Port of Rotterdam, Europe's largest port, is located in which country?",
-                options: ["Belgium", "Netherlands", "France", "Germany"],
-                answer: 1,
-                explanation: "The Port of Rotterdam is a major European port located in the city of Rotterdam, Netherlands.",
-                difficulty: "tough"
-            },
-            {
-                question: "Iguazu Falls is a system of waterfalls on the border of Brazil and which other country?",
-                options: ["Argentina", "Paraguay", "Uruguay", "Chile"],
-                answer: 0,
-                explanation: "Iguazu Falls is on the border of Brazil and Argentina.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Welland Canal is a ship canal in Ontario, Canada, connecting Lake Ontario and which other Great Lake?",
-                options: ["Lake Erie", "Lake Huron", "Lake Michigan", "Lake Superior"],
-                answer: 0,
-                explanation: "The Welland Canal connects Lake Ontario and Lake Erie, allowing ships to bypass Niagara Falls.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which of the following is the largest artificial lake in the world by volume?",
-                options: ["Lake Kariba", "Lake Volta", "Lake Nasser", "Lake Mead"],
-                answer: 1,
-                explanation: "Lake Volta in Ghana is the largest artificial lake by surface area, but Lake Kariba is often cited as the largest by volume. However, Lake Volta is also a strong contender for largest by volume depending on the source.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Port of Singapore is one of the world's busiest ports in terms of total shipping tonnage. Which country is it located in?",
-                options: ["Malaysia", "Indonesia", "Singapore", "Thailand"],
+                question: "Krakatoa is a volcano located in the 'Ring of Fire' in which country?",
+                options: ["Philippines", "Japan", "Indonesia", "New Zealand"],
                 answer: 2,
-                explanation: "The Port of Singapore is the collective name for the facilities and services at the Singaporean port.",
-                difficulty: "tough"
+                explanation: "Krakatoa is an active stratovolcano in Indonesia.",
+                difficulty: "tough", source_page: 31
             },
             {
-                question: "Gullfoss, a powerful waterfall, is a popular tourist attraction in which Nordic country?",
+                question: "The lowest point in North America is Death Valley, located in which US state?",
+                options: ["Arizona", "Nevada", "California", "Utah"],
+                answer: 2,
+                explanation: "Death Valley is a desert valley in Eastern California.",
+                difficulty: "tough", source_page: 32
+            },
+            {
+                question: "Which river forms a significant part of the border between the USA and Mexico?",
+                options: ["Colorado River", "Rio Grande", "Columbia River", "Mississippi River"],
+                answer: 1,
+                explanation: "The Rio Grande forms a large section of the border between the United States and Mexico.",
+                difficulty: "tough", source_page: 30
+            },
+            {
+                question: "The Lambert Glacier, one of the largest glaciers in the world, is located in which continent?",
+                options: ["Asia", "North America", "Antarctica", "Europe"],
+                answer: 2,
+                explanation: "The Lambert Glacier is a major glacier in East Antarctica.",
+                difficulty: "tough", source_page: 31
+            },
+            {
+                question: "Mount Etna is an active volcano located on which island?",
+                options: ["Crete", "Cyprus", "Sicily", "Sardinia"],
+                answer: 2,
+                explanation: "Mount Etna is an active stratovolcano on the east coast of Sicily, Italy.",
+                difficulty: "tough", source_page: 31
+            },
+            {
+                question: "The lowest point in South America is Laguna del Carbón, located in which country?",
+                options: ["Chile", "Brazil", "Argentina", "Peru"],
+                answer: 2,
+                explanation: "Laguna del Carbón is the lowest point in Argentina and the Americas.",
+                difficulty: "tough", source_page: 32
+            },
+            {
+                question: "Which river is the longest in North America (considering the Mississippi-Missouri river system)?",
+                options: ["Mackenzie River", "Yukon River", "Mississippi River", "Missouri River"],
+                answer: 2,
+                explanation: "The Mississippi-Missouri river system is the longest river system in North America.",
+                difficulty: "tough", source_page: 30
+            },
+            {
+                question: "The Vatnajökull glacier, the largest glacier in Europe by area, is located in which country?",
                 options: ["Norway", "Sweden", "Iceland", "Finland"],
                 answer: 2,
-                explanation: "Gullfoss is a waterfall located in the canyon of the Hvítá river in southwest Iceland.",
-                difficulty: "tough"
+                explanation: "Vatnajökull is the largest and most voluminous ice cap in Iceland.",
+                difficulty: "tough", source_page: 31
             },
             {
-                question: "The Erie Canal, historically significant for trade, connects Lake Erie to which major river?",
-                options: ["Mississippi River", "Hudson River", "Ohio River", "St. Lawrence River"],
-                answer: 1,
-                explanation: "The Erie Canal connects Lake Erie to the Hudson River, linking the Great Lakes to the Atlantic Ocean.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which of the following is the largest saltwater lake in the world?",
-                options: ["Great Salt Lake", "Dead Sea", "Caspian Sea", "Lake Aral"],
+                question: "Mauna Loa, one of the world's most active volcanoes, is located in which US state?",
+                options: ["Alaska", "California", "Hawaii", "Washington"],
                 answer: 2,
-                explanation: "The Caspian Sea is the world's largest inland body of water, variously regarded as the world's largest lake or a full-fledged sea.",
-                difficulty: "tough"
+                explanation: "Mauna Loa is one of five volcanoes that form the Island of Hawaii.",
+                difficulty: "tough", source_page: 31
             },
             {
-                question: "The Port of Busan is the largest seaport in South Korea, located on which sea?",
-                options: ["Yellow Sea", "East China Sea", "Sea of Japan (East Sea)", "Philippine Sea"],
+                question: "The lowest point in Europe is the Caspian Depression, located in which country (or countries)?",
+                options: ["Germany", "France", "Russia/Kazakhstan", "Ukraine"],
                 answer: 2,
-                explanation: "The Port of Busan is located on the southeastern tip of the Korean Peninsula, facing the Sea of Japan (East Sea).",
-                difficulty: "tough"
+                explanation: "The Caspian Depression is a low-lying flatland region around the northern part of the Caspian Sea, spanning Russia and Kazakhstan.",
+                difficulty: "tough", source_page: 32
             },
             {
-                question: "Plitvice Lakes National Park, famous for its cascading lakes and waterfalls, is in which European country?",
-                options: ["Slovenia", "Croatia", "Bosnia and Herzegovina", "Montenegro"],
+                question: "Which river flows through Paris, France?",
+                options: ["Rhine River", "Loire River", "Seine River", "Garonne River"],
+                answer: 2,
+                explanation: "The Seine River is a 777-kilometre-long river and an important commercial waterway within the Paris Basin.",
+                difficulty: "tough", source_page: 30
+            },
+            {
+                question: "The Aletsch Glacier, the largest glacier in the Alps, is in which country?",
+                options: ["Austria", "Italy", "France", "Switzerland"],
+                answer: 3,
+                explanation: "The Aletsch Glacier is the largest glacier in the Alps, located in Switzerland.",
+                difficulty: "tough", source_page: 31
+            },
+            {
+                question: "Mount Kilimanjaro, Africa's highest peak, is a dormant volcano located in which country?",
+                options: ["Kenya", "Uganda", "Tanzania", "Rwanda"],
+                answer: 2,
+                explanation: "Mount Kilimanjaro is a dormant volcano in Tanzania.",
+                difficulty: "tough", source_page: 31
+            },
+            {
+                question: "The lowest point in Asia is the Dead Sea, bordering Israel, Palestine, and which other country?",
+                options: ["Syria", "Lebanon", "Jordan", "Egypt"],
+                answer: 2,
+                explanation: "The Dead Sea borders Jordan to the east and Israel and the West Bank to the west.",
+                difficulty: "tough", source_page: 32
+            },
+            {
+                question: "Which river is the longest in Australia?",
+                options: ["Darling River", "Murray River", "Lachlan River", "Murrumbidgee River"],
                 answer: 1,
-                explanation: "Plitvice Lakes National Park is one of the oldest and largest national parks in Croatia.",
-                difficulty: "tough"
+                explanation: "The Murray River is Australia's longest river.",
+                difficulty: "tough", source_page: 30
             },
             {
-                question: "The Volga-Don Canal connects the Volga River with the Don River, providing a waterway between which two major seas?",
-                options: ["Black Sea and Caspian Sea", "Baltic Sea and Black Sea", "Caspian Sea and Aral Sea", "Black Sea and Mediterranean Sea"],
-                answer: 0,
-                explanation: "The Volga-Don Canal connects the Volga River and the Don River, linking the Caspian Sea and the Black Sea.",
-                difficulty: "tough"
+                question: "The Franz Josef Glacier is a famous glacier located in which country?",
+                options: ["Canada", "USA", "New Zealand", "Argentina"],
+                answer: 2,
+                explanation: "The Franz Josef Glacier is located in Westland Tai Poutini National Park on the West Coast of New Zealand's South Island.",
+                difficulty: "tough", source_page: 31
+            },
+            {
+                question: "Mount Pinatubo, known for its large eruption in 1991, is located in which country?",
+                options: ["Indonesia", "Philippines", "Japan", "Mexico"],
+                answer: 1,
+                explanation: "Mount Pinatubo is an active stratovolcano in the Cabusilan Mountains on the island of Luzon, near the tripoint of the Philippine provinces of Zambales, Tarlac, and Pampanga.",
+                difficulty: "tough", source_page: 31
+            },
+            {
+                question: "The lowest point in Australia is Lake Eyre, located in which state?",
+                options: ["Western Australia", "Queensland", "South Australia", "New South Wales"],
+                answer: 2,
+                explanation: "Lake Eyre is a large, ephemeral salt lake in the Far North region of South Australia.",
+                difficulty: "tough", source_page: 32
+            },
+            {
+                question: "The highest point in Africa is Mount Kilimanjaro, located in which country?",
+                options: ["Kenya", "Uganda", "Tanzania", "Ethiopia"],
+                answer: 2,
+                explanation: "Mount Kilimanjaro is the highest mountain in Africa and the highest single free-standing mountain in the world, located in Tanzania.",
+                difficulty: "tough", source_page: 31
+            },
+            {
+                question: "The highest point in South America is Aconcagua, located in which country?",
+                options: ["Chile", "Peru", "Argentina", "Bolivia"],
+                answer: 2,
+                explanation: "Aconcagua is the highest mountain in the Americas and the highest peak outside of Asia, located in the Andes mountains in Mendoza Province, Argentina.",
+                difficulty: "tough", source_page: 31
             },
 
-            // English (Prepositions) - Aim for ~33 questions
-            // Easy (3 questions)
+            // English (Fill in the Blanks with Suitable/Appropriate Prepositions)
             {
-                question: "She is good ______ English.",
-                options: ["at", "in", "on", "with"],
-                answer: 0,
-                explanation: "'Good at' is used to express proficiency in something.",
-                difficulty: "easy"
-            },
-            {
-                question: "He is afraid ______ dogs.",
-                options: ["from", "of", "with", "by"],
+                question: "She arrived ______ the station.",
+                options: ["in", "at", "on", "to"],
                 answer: 1,
-                explanation: "'Afraid of' is the correct idiom.",
-                difficulty: "easy"
+                explanation: "'Arrive at' is used for specific, smaller places like a station.",
+                difficulty: "easy", source_page: 432
             },
             {
-                question: "The book is ______ the table.",
+                question: "The cat is sitting ______ the chair.",
                 options: ["in", "at", "on", "under"],
                 answer: 2,
                 explanation: "'On' is used for objects resting on a surface.",
-                difficulty: "easy"
-            },
-            // Medium (17 questions)
-            {
-                question: "He apologized ______ his mistake.",
-                options: ["for", "to", "about", "with"],
-                answer: 0,
-                explanation: "'Apologize for' is used when apologizing for an action or mistake.",
-                difficulty: "medium"
+                difficulty: "easy", source_page: 432
             },
             {
-                question: "She is accustomed ______ hot weather.",
-                options: ["to", "with", "by", "for"],
-                answer: 0,
-                explanation: "'Accustomed to' means familiar with something.",
-                difficulty: "medium"
-            },
-            {
-                question: "I agree ______ you on this point.",
-                options: ["with", "to", "on", "about"],
-                answer: 0,
-                explanation: "'Agree with' is used when agreeing with a person.",
-                difficulty: "medium"
-            },
-            {
-                question: "He arrived ______ London yesterday.",
-                options: ["at", "in", "on", "to"],
+                question: "He is listening ______ music.",
+                options: ["at", "to", "for", "with"],
                 answer: 1,
-                explanation: "'Arrive in' is used for cities or countries.",
-                difficulty: "medium"
+                explanation: "'Listen to' is the correct phrasal verb.",
+                difficulty: "easy", source_page: 432
             },
             {
-                question: "She is angry ______ her brother.",
-                options: ["at", "with", "for", "about"],
+                question: "I am interested ______ learning new languages.",
+                options: ["on", "at", "in", "about"],
+                answer: 2,
+                explanation: "'Interested in' is the correct prepositional phrase.",
+                difficulty: "medium", source_page: 432
+            },
+            {
+                question: "She is good ______ mathematics.",
+                options: ["in", "at", "on", "with"],
                 answer: 1,
-                explanation: "'Angry with' is used when angry at a person.",
-                difficulty: "medium"
+                explanation: "'Good at' is used to express proficiency in a subject or skill.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "He is fond ______ music.",
-                options: ["of", "for", "about", "with"],
-                answer: 0,
-                explanation: "'Fond of' means having a liking for something.",
-                difficulty: "medium"
-            },
-            {
-                question: "She suffers ______ a chronic illness.",
-                options: ["from", "with", "of", "by"],
-                answer: 0,
-                explanation: "'Suffer from' is used for illnesses or conditions.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is dependent ______ his parents.",
-                options: ["on", "upon", "from", "of"],
-                answer: 0,
-                explanation: "'Dependent on' means relying on someone or something.",
-                difficulty: "medium"
-            },
-            {
-                question: "The teacher was pleased ______ my progress.",
-                options: ["with", "at", "by", "from"],
-                answer: 0,
-                explanation: "'Pleased with' is used to express satisfaction with something.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is interested ______ reading books.",
-                options: ["in", "on", "at", "about"],
-                answer: 0,
-                explanation: "'Interested in' is the correct phrase.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is married ______ a doctor.",
-                options: ["to", "with", "by", "for"],
-                answer: 0,
-                explanation: "'Married to' is the correct preposition.",
-                difficulty: "medium"
-            },
-            {
-                question: "He was accused ______ theft.",
-                options: ["of", "for", "with", "by"],
-                answer: 0,
-                explanation: "'Accused of' is the correct phrase.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is confident ______ her success.",
-                options: ["of", "in", "about", "with"],
-                answer: 0,
-                explanation: "'Confident of' is used to express certainty about something.",
-                difficulty: "medium"
-            },
-            {
-                question: "He was born ______ a small village.",
-                options: ["at", "in", "on", "from"],
+                question: "He is afraid ______ spiders.",
+                options: ["from", "of", "with", "by"],
                 answer: 1,
-                explanation: "'Born in' is used for places.",
-                difficulty: "medium"
+                explanation: "'Afraid of' is the correct idiom.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "Beware ______ pickpockets.",
-                options: ["of", "from", "about", "with"],
-                answer: 0,
-                explanation: "'Beware of' means to be careful about something.",
-                difficulty: "medium"
+                question: "The book belongs ______ me.",
+                options: ["for", "to", "with", "of"],
+                answer: 1,
+                explanation: "'Belong to' indicates possession.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "He is grateful ______ your help.",
-                options: ["for", "to", "about", "with"],
-                answer: 0,
-                explanation: "'Grateful for' is used to express gratitude for something.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is responsible ______ the project.",
-                options: ["for", "to", "of", "with"],
-                answer: 0,
-                explanation: "'Responsible for' means accountable for something.",
-                difficulty: "medium"
-            },
-            // Tough (13 questions)
-            {
-                question: "He abstained ______ voting.",
-                options: ["from", "in", "on", "with"],
-                answer: 0,
-                explanation: "'Abstain from' means to refrain from doing something.",
-                difficulty: "tough"
-            },
-            {
-                question: "The new policy will come ______ effect next month.",
-                options: ["into", "in", "to", "on"],
-                answer: 0,
-                explanation: "'Come into effect' means to become operational.",
-                difficulty: "tough"
-            },
-            {
-                question: "He is absorbed ______ his studies.",
-                options: ["in", "on", "at", "with"],
-                answer: 0,
-                explanation: "'Absorbed in' means fully engrossed in something.",
-                difficulty: "tough"
-            },
-            {
-                question: "She is anxious ______ her exam results.",
-                options: ["about", "for", "of", "with"],
-                answer: 0,
-                explanation: "'Anxious about' is used when worried about something.",
-                difficulty: "tough"
-            },
-            {
-                question: "He was acquitted ______ the crime.",
-                options: ["of", "from", "for", "with"],
-                answer: 0,
-                explanation: "'Acquitted of' means declared not guilty of a crime.",
-                difficulty: "tough"
-            },
-            {
-                question: "She is capable ______ doing great things.",
-                options: ["of", "in", "for", "with"],
-                answer: 0,
-                explanation: "'Capable of' means having the ability to do something.",
-                difficulty: "tough"
-            },
-            {
-                question: "He complained ______ the manager ______ the poor service.",
-                options: ["to, about", "about, to", "at, for", "with, on"],
-                answer: 0,
-                explanation: "'Complain to' a person, 'complain about' a thing.",
-                difficulty: "tough"
-            },
-            {
-                question: "He is conversant ______ several languages.",
-                options: ["with", "in", "about", "of"],
-                answer: 0,
-                explanation: "'Conversant with' means familiar with or knowledgeable about something.",
-                difficulty: "tough"
-            },
-            {
-                question: "The judge presided ______ the case.",
-                options: ["over", "on", "at", "in"],
-                answer: 0,
-                explanation: "'Preside over' means to be in charge of a meeting or event.",
-                difficulty: "tough"
+                question: "She is fond ______ chocolates.",
+                options: ["for", "of", "about", "with"],
+                answer: 1,
+                explanation: "'Fond of' means having a liking or affection for something.",
+                difficulty: "medium", source_page: 432
             },
             {
                 question: "He is addicted ______ gambling.",
-                options: ["to", "in", "on", "with"],
-                answer: 0,
-                explanation: "'Addicted to' is the correct phrase.",
-                difficulty: "tough"
-            },
-            {
-                question: "She is conscious ______ her duties.",
-                options: ["of", "about", "with", "for"],
-                answer: 0,
-                explanation: "'Conscious of' means aware of something.",
-                difficulty: "tough"
-            },
-            {
-                question: "He is eligible ______ the scholarship.",
-                options: ["for", "to", "of", "with"],
-                answer: 0,
-                explanation: "'Eligible for' means qualified for something.",
-                difficulty: "tough"
-            },
-            {
-                question: "The accident resulted ______ serious injuries.",
-                options: ["in", "from", "to", "with"],
-                answer: 0,
-                explanation: "'Result in' means to cause something.",
-                difficulty: "tough"
-            },
-
-            // Islamic Studies (IS) - Most Important/Frequently Asked Questions - Aim for ~34 questions
-            // Easy (4 questions)
-            {
-                question: "Who is known as the last prophet of Islam?",
-                options: ["Prophet Musa (Moses)", "Prophet Isa (Jesus)", "Prophet Muhammad (PBUH)", "Prophet Ibrahim (Abraham)"],
-                answer: 2,
-                explanation: "Prophet Muhammad (PBUH) is the final prophet in Islam.",
-                difficulty: "easy"
-            },
-            {
-                question: "What is the holy book of Islam?",
-                options: ["Torah", "Bible", "Quran", "Zabur"],
-                answer: 2,
-                explanation: "The Quran is the central religious text of Islam.",
-                difficulty: "easy"
-            },
-            {
-                question: "How many pillars are there in Islam?",
-                options: ["Three", "Four", "Five", "Six"],
-                answer: 2,
-                explanation: "There are five pillars of Islam: Shahada, Salat, Zakat, Sawm, and Hajj.",
-                difficulty: "easy"
-            },
-            {
-                question: "In which city is the Kaaba located?",
-                options: ["Madinah", "Jerusalem", "Makkah", "Baghdad"],
-                answer: 2,
-                explanation: "The Kaaba is a building at the center of Islam's most important mosque, the Masjid al-Haram in Makkah, Saudi Arabia.",
-                difficulty: "easy"
-            },
-            // Medium (23 questions)
-            {
-                question: "What is the first month of the Islamic calendar?",
-                options: ["Ramadan", "Shawwal", "Muharram", "Rabi' al-Awwal"],
-                answer: 2,
-                explanation: "Muharram is the first month of the Islamic calendar.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the name of the migration of Prophet Muhammad (PBUH) and his companions from Makkah to Madinah?",
-                options: ["Hijra", "Jihad", "Hajj", "Umrah"],
-                answer: 0,
-                explanation: "The Hijra refers to the migration of Prophet Muhammad and his followers from Makkah to Madinah in 622 CE.",
-                difficulty: "medium"
-            },
-            {
-                question: "How many times a day do Muslims perform Salat (prayer)?",
-                options: ["Three", "Four", "Five", "Six"],
-                answer: 2,
-                explanation: "Muslims perform five obligatory prayers daily.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is Zakat?",
-                options: ["Fasting", "Charity", "Pilgrimage", "Prayer"],
+                options: ["in", "to", "on", "with"],
                 answer: 1,
-                explanation: "Zakat is an obligatory charity paid to the poor and needy.",
-                difficulty: "medium"
+                explanation: "'Addicted to' is the correct phrase for a strong habit.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "During which month do Muslims fast from dawn to sunset?",
-                options: ["Muharram", "Rajab", "Ramadan", "Dhul Hijjah"],
+                question: "I agree ______ your proposal.",
+                options: ["with", "on", "to", "about"],
                 answer: 2,
-                explanation: "Fasting is observed during the month of Ramadan.",
-                difficulty: "medium"
+                explanation: "'Agree to' is used when agreeing to a plan, proposal, or idea.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "What is the pilgrimage to Makkah called?",
-                options: ["Umrah", "Jihad", "Hajj", "Shahada"],
+                question: "He suffers ______ a rare disease.",
+                options: ["with", "of", "from", "by"],
                 answer: 2,
-                explanation: "Hajj is the annual pilgrimage to Makkah.",
-                difficulty: "medium"
+                explanation: "'Suffer from' is used for illnesses or conditions.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "Who was the first Caliph of Islam?",
-                options: ["Umar ibn al-Khattab", "Ali ibn Abi Talib", "Abu Bakr as-Siddiq", "Uthman ibn Affan"],
-                answer: 2,
-                explanation: "Abu Bakr was the first Caliph of Islam, succeeding Prophet Muhammad (PBUH).",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the meaning of 'Shahada'?",
-                options: ["Prayer", "Fasting", "Declaration of Faith", "Charity"],
-                answer: 2,
-                explanation: "Shahada is the declaration of faith, 'There is no god but Allah, and Muhammad is His messenger.'",
-                difficulty: "medium"
-            },
-            {
-                question: "Which battle was fought in the 2nd year of Hijra, considered the first major battle in Islam?",
-                options: ["Battle of Uhud", "Battle of Khandaq", "Battle of Badr", "Battle of Tabuk"],
-                answer: 2,
-                explanation: "The Battle of Badr was the first major battle between the early Muslims and the Quraish of Makkah.",
-                difficulty: "medium"
-            },
-            {
-                question: "Who was the wife of Prophet Muhammad (PBUH) known as 'Mother of the Believers'?",
-                options: ["Aisha", "Khadijah", "Fatimah", "Zainab"],
-                answer: 1,
-                explanation: "Khadijah bint Khuwaylid was the first wife of Prophet Muhammad (PBUH).",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the Arabic term for 'God's oneness'?",
-                options: ["Risalah", "Akhirah", "Tawhid", "Jihad"],
-                answer: 2,
-                explanation: "Tawhid is the indivisible oneness concept of monotheism in Islam.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which angel is responsible for delivering revelations to the prophets?",
-                options: ["Angel Mika'il", "Angel Israfil", "Angel Jibril (Gabriel)", "Angel Azra'il"],
-                answer: 2,
-                explanation: "Angel Jibril (Gabriel) delivered God's messages to the prophets, including Prophet Muhammad (PBUH).",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the name of the farewell pilgrimage performed by Prophet Muhammad (PBUH)?",
-                options: ["Umrah", "Hajjat al-Wada", "Hajj al-Tamattu", "Hajj al-Qiran"],
-                answer: 1,
-                explanation: "Hajjat al-Wada' (The Farewell Pilgrimage) was Prophet Muhammad's only Hajj.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the Islamic term for 'Day of Judgment'?",
-                options: ["Dunya", "Barzakh", "Akhirah", "Jannah"],
-                answer: 2,
-                explanation: "Akhirah refers to the afterlife and the Day of Judgment.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which surah of the Quran is known as 'The Opening'?",
-                options: ["Surah Al-Baqarah", "Surah Al-Fatiha", "Surah Al-Ikhlas", "Surah An-Nas"],
-                answer: 1,
-                explanation: "Surah Al-Fatiha is the first chapter of the Quran and is recited in every prayer.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the minimum amount of wealth a Muslim must possess for Zakat to become obligatory?",
-                options: ["Nisab", "Sadaqah", "Fitra", "Kaffarah"],
-                answer: 0,
-                explanation: "Nisab is the minimum threshold of wealth that makes a Muslim liable to pay Zakat.",
-                difficulty: "medium"
-            },
-            {
-                question: "Who was the second Caliph of Islam, known for his justice?",
-                options: ["Ali ibn Abi Talib", "Uthman ibn Affan", "Umar ibn al-Khattab", "Abu Bakr as-Siddiq"],
-                answer: 2,
-                explanation: "Umar ibn al-Khattab was the second Caliph and was renowned for his just rule.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the Islamic term for 'struggle' or 'striving'?",
-                options: ["Salat", "Sawm", "Jihad", "Hajj"],
-                answer: 2,
-                explanation: "Jihad refers to the struggle or striving in the way of Allah.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which city became the first capital of the Islamic state?",
-                options: ["Makkah", "Jerusalem", "Madinah", "Damascus"],
-                answer: 2,
-                explanation: "Madinah became the capital after the Hijra.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the name of the prayer performed after the Isha (night) prayer during Ramadan?",
-                options: ["Fajr", "Dhuhr", "Asr", "Tarawih"],
+                question: "She is accustomed ______ the cold weather.",
+                options: ["with", "by", "for", "to"],
                 answer: 3,
-                explanation: "Tarawih prayers are special congregational prayers performed during Ramadan nights.",
-                difficulty: "medium"
+                explanation: "'Accustomed to' means familiar with something through experience.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "What is the Islamic term for 'prophetic tradition' or 'sayings and actions of Prophet Muhammad (PBUH)'?",
-                options: ["Quran", "Ijma", "Qiyas", "Hadith"],
+                question: "He is responsible ______ the success of the project.",
+                options: ["to", "of", "with", "for"],
                 answer: 3,
-                explanation: "Hadith refers to the collection of traditions containing sayings of the prophet Muhammad (PBUH).",
-                difficulty: "medium"
-            },
-            {
-                question: "Which of the following is NOT one of the five pillars of Islam?",
-                options: ["Shahada (Declaration of Faith)", "Salat (Prayer)", "Jihad (Struggle)", "Zakat (Charity)"],
-                answer: 2,
-                explanation: "Jihad is an important concept but not one of the five core pillars.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the Islamic term for 'consensus of the Muslim community'?",
-                options: ["Ijma", "Qiyas", "Ijtihad", "Shura"],
-                answer: 0,
-                explanation: "Ijma refers to the consensus of the Muslim scholars or community on a religious issue.",
-                difficulty: "medium"
-            },
-            // Tough (7 questions)
-            {
-                question: "Who compiled the first complete collection of Hadith, Sahih al-Bukhari?",
-                options: ["Imam Muslim", "Imam Tirmidhi", "Imam Bukhari", "Imam Abu Dawood"],
-                answer: 2,
-                explanation: "Imam Bukhari compiled Sahih al-Bukhari, one of the most authentic Hadith collections.",
-                difficulty: "tough"
-            },
-            {
-                question: "What was the first mosque built in Islam?",
-                options: ["Masjid al-Haram", "Masjid an-Nabawi", "Masjid Quba", "Al-Aqsa Mosque"],
-                answer: 2,
-                explanation: "Masjid Quba, located just outside Madinah, was the first mosque built by Prophet Muhammad (PBUH) himself.",
-                difficulty: "tough"
-            },
-            {
-                question: "In which year did the Battle of Uhud take place?",
-                options: ["1 AH", "2 AH", "3 AH", "4 AH"],
-                answer: 2,
-                explanation: "The Battle of Uhud took place in 3 AH (625 CE).",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the Islamic term for 'revelation' or 'divine inspiration'?",
-                options: ["Wahy", "Sunnah", "Fiqh", "Sharia"],
-                answer: 0,
-                explanation: "Wahy is the divine revelation received by prophets from Allah.",
-                difficulty: "tough"
-            },
-            {
-                question: "Who was the third Caliph of Islam, known for compiling the Quran into a single volume?",
-                options: ["Ali ibn Abi Talib", "Umar ibn al-Khattab", "Uthman ibn Affan", "Abu Bakr as-Siddiq"],
-                answer: 2,
-                explanation: "Uthman ibn Affan oversaw the compilation and standardization of the Quran.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the Islamic legal term for 'analogy' used in deriving rulings when there is no direct text in the Quran or Sunnah?",
-                options: ["Ijma", "Ijtihad", "Qiyas", "Istihsan"],
-                answer: 2,
-                explanation: "Qiyas is a method of analogical deduction in Islamic jurisprudence.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which Islamic scholar is considered the 'Father of Algebra'?",
-                options: ["Al-Kindi", "Al-Farabi", "Al-Khwarizmi", "Ibn Sina"],
-                answer: 2,
-                explanation: "Muhammad ibn Musa al-Khwarizmi was a Persian polymath who introduced algebra.",
-                difficulty: "tough"
-            },
-            // Additional questions to reach 100 total
-            // GK (10 more medium, 10 more tough)
-            // Medium (10 questions)
-            {
-                question: "The Strait of Gibraltar connects the Atlantic Ocean with which sea?",
-                options: ["Mediterranean Sea", "North Sea", "Baltic Sea", "Black Sea"],
-                answer: 0,
-                explanation: "The Strait of Gibraltar is a narrow strait that connects the Atlantic Ocean to the Mediterranean Sea.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which is the largest artificial lake in Pakistan?",
-                options: ["Rawal Lake", "Keenjhar Lake", "Manchar Lake", "Tarbela Lake"],
-                answer: 1,
-                explanation: "Keenjhar Lake (also known as Kalri Lake) is the largest freshwater lake in Pakistan.",
-                difficulty: "medium"
-            },
-            {
-                question: "The Three Gorges Dam, the world's largest power station, is built on which river?",
-                options: ["Yellow River", "Mekong River", "Yangtze River", "Pearl River"],
-                answer: 2,
-                explanation: "The Three Gorges Dam is built on the Yangtze River in China.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which famous waterfall is located in the border region of Brazil and Argentina?",
-                options: ["Angel Falls", "Victoria Falls", "Iguazu Falls", "Niagara Falls"],
-                answer: 2,
-                explanation: "Iguazu Falls is located on the border of Brazil and Argentina.",
-                difficulty: "medium"
-            },
-            {
-                question: "The Port of Dubai is a major global cargo hub located in which country?",
-                options: ["Saudi Arabia", "Qatar", "UAE", "Oman"],
-                answer: 2,
-                explanation: "The Port of Jebel Ali, part of Dubai, is a major port in the United Arab Emirates.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which of the following is the largest lake in Africa by surface area?",
-                options: ["Lake Tanganyika", "Lake Malawi", "Lake Victoria", "Lake Chad"],
-                answer: 2,
-                explanation: "Lake Victoria is the largest lake in Africa by surface area.",
-                difficulty: "medium"
-            },
-            {
-                question: "The Grand Coulee Dam, a massive concrete gravity dam, is on which river in the USA?",
-                options: ["Mississippi River", "Colorado River", "Columbia River", "Missouri River"],
-                answer: 2,
-                explanation: "The Grand Coulee Dam is on the Columbia River in Washington state, USA.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which canal connects the Caspian Sea to the Black Sea via the Volga River?",
-                options: ["Suez Canal", "Kiel Canal", "Volga-Don Canal", "Erie Canal"],
-                answer: 2,
-                explanation: "The Volga-Don Canal connects the Volga River and the Don River, providing a link between the Caspian Sea and the Black Sea.",
-                difficulty: "medium"
-            },
-            {
-                question: "The Port of Long Beach is a major seaport in which US state?",
-                options: ["Florida", "Texas", "California", "New York"],
-                answer: 2,
-                explanation: "The Port of Long Beach is located in California, USA.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which lake is the largest lake in South America?",
-                options: ["Lake Titicaca", "Lake Maracaibo", "Lake Poopó", "Lake Nicaragua"],
-                answer: 1,
-                explanation: "Lake Maracaibo in Venezuela is the largest lake in South America.",
-                difficulty: "medium"
-            },
-            // Tough (10 questions)
-            {
-                question: "The Bosphorus Strait connects the Black Sea with which other sea?",
-                options: ["Aegean Sea", "Marmara Sea", "Mediterranean Sea", "Adriatic Sea"],
-                answer: 1,
-                explanation: "The Bosphorus Strait connects the Black Sea to the Sea of Marmara.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which of the following is the world's highest waterfall by total height?",
-                options: ["Angel Falls", "Tugela Falls", "Three Sisters Falls", "Olo'upena Falls"],
-                answer: 0,
-                explanation: "Angel Falls in Venezuela is the world's highest uninterrupted waterfall.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Port of Felixstowe, the UK's busiest container port, is located in which county?",
-                options: ["Kent", "Essex", "Suffolk", "Norfolk"],
-                answer: 2,
-                explanation: "The Port of Felixstowe is located in Suffolk, England.",
-                difficulty: "tough"
-            },
-            {
-                question: "Lake Eyre, a large ephemeral lake, is located in which country?",
-                options: ["Australia", "Canada", "USA", "Kazakhstan"],
-                answer: 0,
-                explanation: "Lake Eyre is the largest lake in Australia when filled.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Chesapeake and Delaware Canal connects which two bodies of water?",
-                options: ["Chesapeake Bay and Delaware Bay", "Delaware River and Hudson River", "Atlantic Ocean and Pacific Ocean", "Great Lakes and Mississippi River"],
-                answer: 0,
-                explanation: "The C&D Canal connects the Chesapeake Bay with the Delaware Bay.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which lake is the largest freshwater lake in Southeast Asia?",
-                options: ["Lake Toba", "Tonlé Sap", "Lake Biwa", "Lake Lanao"],
-                answer: 1,
-                explanation: "Tonlé Sap in Cambodia is the largest freshwater lake in Southeast Asia.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Port of Shanghai is located at the mouth of which river?",
-                options: ["Yellow River", "Pearl River", "Yangtze River", "Xi River"],
-                answer: 2,
-                explanation: "The Port of Shanghai is situated at the mouth of the Yangtze River.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which of the following is the deepest lake in North America?",
-                options: ["Lake Superior", "Great Slave Lake", "Crater Lake", "Lake Tahoe"],
-                answer: 1,
-                explanation: "Great Slave Lake in Canada is the deepest lake in North America.",
-                difficulty: "tough"
-            },
-            {
-                question: "The Panama Canal uses a system of locks to lift ships over which mountain range?",
-                options: ["Andes", "Rockies", "Continental Divide", "Appalachians"],
-                answer: 2,
-                explanation: "The Panama Canal cuts through the Continental Divide of Panama.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which waterfall is known as 'The Smoke' due to the mist it generates, located in Iceland?",
-                options: ["Skógafoss", "Seljalandsfoss", "Gullfoss", "Godafoss"],
-                answer: 2,
-                explanation: "Gullfoss, meaning 'Golden Falls', is also known as 'The Smoke' due to the spray it creates.",
-                difficulty: "tough"
-            },
-
-            // English (Prepositions) - Additional questions to reach 50 medium, 40 tough
-            // Medium (23 more questions)
-            {
-                question: "He is senior ______ me by two years.",
-                options: ["than", "to", "from", "over"],
-                answer: 1,
-                explanation: "'Senior to' is the correct comparative phrase.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is good ______ playing chess.",
-                options: ["in", "at", "on", "with"],
-                answer: 1,
-                explanation: "'Good at' is used for skills.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is suffering ______ fever.",
-                options: ["from", "with", "of", "by"],
-                answer: 0,
-                explanation: "'Suffering from' is used for illnesses.",
-                difficulty: "medium"
-            },
-            {
-                question: "I congratulated him ______ his success.",
-                options: ["for", "on", "about", "with"],
-                answer: 1,
-                explanation: "'Congratulate on' is the correct phrase.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is addicted ______ coffee.",
-                options: ["to", "for", "with", "of"],
-                answer: 0,
-                explanation: "'Addicted to' means having a strong habit or dependence.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is angry ______ what you said.",
-                options: ["with", "at", "about", "for"],
-                answer: 2,
-                explanation: "'Angry about' is used when angry about a situation or thing.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is afraid ______ heights.",
-                options: ["of", "from", "with", "by"],
-                answer: 0,
-                explanation: "'Afraid of' is the correct idiom.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is busy ______ his work.",
-                options: ["in", "with", "at", "on"],
-                answer: 1,
-                explanation: "'Busy with' is used to describe being occupied with a task.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is confident ______ her abilities.",
-                options: ["of", "in", "about", "with"],
-                answer: 0,
-                explanation: "'Confident of' is used to express certainty about one's abilities.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is keen ______ learning new things.",
-                options: ["on", "in", "about", "for"],
-                answer: 0,
-                explanation: "'Keen on' means enthusiastic about something.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is proud ______ her achievements.",
-                options: ["of", "for", "about", "with"],
-                answer: 0,
-                explanation: "'Proud of' is the correct phrase.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is responsible ______ his family.",
-                options: ["for", "to", "of", "with"],
-                answer: 0,
-                explanation: "'Responsible for' means being accountable for someone or something.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is interested ______ politics.",
-                options: ["in", "on", "at", "about"],
-                answer: 0,
-                explanation: "'Interested in' is the correct phrase.",
-                difficulty: "medium"
-            },
-            {
-                question: "She is annoyed ______ his behavior.",
-                options: ["with", "at", "by", "about"],
-                answer: 0,
-                explanation: "'Annoyed with' is used when annoyed at a person.",
-                difficulty: "medium"
-            },
-            {
-                question: "He was born ______ a poor family.",
-                options: ["in", "into", "of", "from"],
-                answer: 1,
-                explanation: "'Born into' is used for circumstances or families.",
-                difficulty: "medium"
-            },
-            {
-                question: "He is capable ______ solving this problem.",
-                options: ["of", "in", "for", "with"],
-                answer: 0,
-                explanation: "'Capable of' is used to express ability.",
-                difficulty: "medium"
+                explanation: "'Responsible for' means accountable for something.",
+                difficulty: "medium", source_page: 432
             },
             {
                 question: "She complained ______ the noise.",
-                options: ["to", "about", "at", "for"],
-                answer: 1,
+                options: ["to", "at", "for", "about"],
+                answer: 3,
                 explanation: "'Complain about' is used when complaining about a thing or situation.",
-                difficulty: "medium"
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "He is familiar ______ this software.",
-                options: ["with", "to", "about", "of"],
-                answer: 0,
-                explanation: "'Familiar with' means having knowledge or experience of something.",
-                difficulty: "medium"
+                question: "He is angry ______ his brother.",
+                options: ["at", "for", "about", "with"],
+                answer: 3,
+                explanation: "'Angry with' is used when angry at a person.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "He is known ______ his honesty.",
-                options: ["for", "as", "by", "of"],
-                answer: 0,
-                explanation: "'Known for' is used to describe a distinguishing quality.",
-                difficulty: "medium"
+                question: "Beware ______ dogs.",
+                options: ["from", "about", "with", "of"],
+                answer: 3,
+                explanation: "'Beware of' means to be careful about a potential danger.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "She was surprised ______ his sudden arrival.",
-                options: ["at", "by", "with", "on"],
-                answer: 0,
-                explanation: "'Surprised at' is the correct idiom.",
-                difficulty: "medium"
+                question: "He is grateful ______ your kindness.",
+                options: ["to", "about", "with", "for"],
+                answer: 3,
+                explanation: "'Grateful for' is used to express gratitude for something received.",
+                difficulty: "medium", source_page: 432
             },
             {
-                question: "He is engaged ______ a new project.",
-                options: ["in", "on", "with", "to"],
-                answer: 0,
-                explanation: "'Engaged in' means involved in an activity.",
-                difficulty: "medium"
+                question: "She is married ______ a lawyer.",
+                options: ["with", "by", "for", "to"],
+                answer: 3,
+                explanation: "'Married to' is the correct preposition.",
+                difficulty: "medium", source_page: 433
             },
             {
-                question: "The dog jumped ______ the table.",
-                options: ["on", "onto", "over", "at"],
-                answer: 1,
-                explanation: "'Onto' indicates movement to a surface.",
-                difficulty: "medium"
+                question: "He was accused ______ cheating.",
+                options: ["for", "with", "by", "of"],
+                answer: 3,
+                explanation: "'Accused of' is the correct phrase for being charged with an offense.",
+                difficulty: "medium", source_page: 433
             },
             {
-                question: "He is popular ______ his students.",
-                options: ["with", "among", "to", "by"],
-                answer: 0,
-                explanation: "'Popular with' is used to describe being liked by a group.",
-                difficulty: "medium"
-            },
-            // Tough (17 more questions)
-            {
-                question: "He is averse ______ hard work.",
-                options: ["to", "from", "at", "with"],
-                answer: 0,
-                explanation: "'Averse to' means having a strong dislike of or opposition to something.",
-                difficulty: "tough"
+                question: "She is confident ______ winning the race.",
+                options: ["in", "about", "with", "of"],
+                answer: 3,
+                explanation: "'Confident of' is used to express certainty about an outcome.",
+                difficulty: "medium", source_page: 433
             },
             {
-                question: "The committee consists ______ seven members.",
-                options: ["of", "from", "in", "with"],
-                answer: 0,
-                explanation: "'Consist of' means to be made up or composed of.",
-                difficulty: "tough"
+                question: "He abstained ______ voting.",
+                options: ["in", "on", "with", "from"],
+                answer: 3,
+                explanation: "'Abstain from' means to refrain from doing something.",
+                difficulty: "tough", source_page: 433
             },
             {
-                question: "He is conversant ______ the rules of the game.",
-                options: ["with", "in", "about", "of"],
-                answer: 0,
+                question: "The new rules will come ______ force next month.",
+                options: ["in", "to", "on", "into"],
+                answer: 3,
+                explanation: "'Come into force' means to become operational or effective.",
+                difficulty: "tough", source_page: 433
+            },
+            {
+                question: "He is absorbed ______ his thoughts.",
+                options: ["on", "at", "with", "in"],
+                answer: 3,
+                explanation: "'Absorbed in' means fully engrossed or occupied with something.",
+                difficulty: "tough", source_page: 433
+            },
+            {
+                question: "She is anxious ______ her future.",
+                options: ["for", "of", "with", "about"],
+                answer: 3,
+                explanation: "'Anxious about' is used when worried or concerned about something.",
+                difficulty: "tough", source_page: 433
+            },
+            {
+                question: "He was acquitted ______ all charges.",
+                options: ["from", "for", "with", "of"],
+                answer: 3,
+                explanation: "'Acquitted of' means declared not guilty of an accusation.",
+                difficulty: "tough", source_page: 433
+            },
+            {
+                question: "She is capable ______ handling the pressure.",
+                options: ["in", "for", "with", "of"],
+                answer: 3,
+                explanation: "'Capable of' means having the ability or quality to do something.",
+                difficulty: "tough", source_page: 433
+            },
+            {
+                question: "He complained ______ the manager ______ the poor service.",
+                options: ["about, to", "at, for", "with, on", "to, about"],
+                answer: 3,
+                explanation: "'Complain to' a person and 'complain about' a thing/situation.",
+                difficulty: "tough", source_page: 433
+            },
+            {
+                question: "He is conversant ______ several languages.",
+                options: ["in", "about", "of", "with"],
+                answer: 3,
                 explanation: "'Conversant with' means familiar with or knowledgeable about something.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 433
             },
             {
-                question: "She is endowed ______ many talents.",
-                options: ["with", "by", "in", "of"],
-                answer: 0,
+                question: "The judge presided ______ the meeting.",
+                options: ["on", "at", "in", "over"],
+                answer: 3,
+                explanation: "'Preside over' means to be in charge of a meeting, ceremony, or trial.",
+                difficulty: "tough", source_page: 433
+            },
+            {
+                question: "She is endowed ______ great beauty.",
+                options: ["by", "in", "of", "with"],
+                answer: 3,
                 explanation: "'Endowed with' means provided with a quality, ability, or asset.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 433
             },
             {
-                question: "He is indulgent ______ his children.",
+                question: "He is indulgent ______ his grandchildren.",
                 options: ["to", "of", "with", "towards"],
                 answer: 3,
                 explanation: "'Indulgent towards' means having a readiness to allow someone to have or do whatever they want.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "The police inquired ______ the matter.",
-                options: ["into", "about", "of", "for"],
-                answer: 0,
-                explanation: "'Inquire into' means to investigate.",
-                difficulty: "tough"
+                question: "The police inquired ______ the missing documents.",
+                options: ["about", "of", "for", "into"],
+                answer: 3,
+                explanation: "'Inquire into' means to investigate or examine something.",
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "He is oblivious ______ the danger.",
-                options: ["of", "to", "about", "from"],
-                answer: 0,
+                question: "He is oblivious ______ his surroundings.",
+                options: ["to", "about", "from", "of"],
+                answer: 3,
                 explanation: "'Oblivious of' or 'oblivious to' means not aware of or not concerned about what is happening around one.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "She is proficient ______ French.",
-                options: ["in", "at", "with", "on"],
-                answer: 0,
-                explanation: "'Proficient in' is used for languages or subjects.",
-                difficulty: "tough"
+                question: "She is proficient ______ playing the piano.",
+                options: ["at", "with", "on", "in"],
+                answer: 3,
+                explanation: "'Proficient in' is used for languages, subjects, or skills.",
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "He is susceptible ______ flattery.",
-                options: ["to", "of", "from", "with"],
-                answer: 0,
+                question: "He is susceptible ______ colds.",
+                options: ["of", "from", "with", "to"],
+                answer: 3,
                 explanation: "'Susceptible to' means easily influenced or harmed by something.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "He is vexed ______ his continuous complaints.",
-                options: ["at", "with", "by", "about"],
-                answer: 0,
+                question: "He is vexed ______ his subordinate's inefficiency.",
+                options: ["with", "by", "about", "at"],
+                answer: 3,
                 explanation: "'Vexed at' is used when annoyed at a situation or thing.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "The novel abounds ______ errors.",
-                options: ["in", "with", "from", "of"],
-                answer: 0,
-                explanation: "'Abound in' means to be plentiful in something.",
-                difficulty: "tough"
+                question: "The river abounds ______ fish.",
+                options: ["with", "from", "of", "in"],
+                answer: 3,
+                explanation: "'Abound in' or 'abound with' means to be plentiful in something.",
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "He is amenable ______ reason.",
-                options: ["to", "with", "for", "of"],
-                answer: 0,
+                question: "He is amenable ______ suggestion.",
+                options: ["with", "for", "of", "to"],
+                answer: 3,
                 explanation: "'Amenable to' means open and responsive to suggestion; easily persuaded or controlled.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "She is cognizant ______ the risks involved.",
-                options: ["of", "about", "with", "in"],
-                answer: 0,
+                question: "She is cognizant ______ the consequences.",
+                options: ["about", "with", "in", "of"],
+                answer: 3,
                 explanation: "'Cognizant of' means having knowledge or being aware of.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 434
             },
             {
-                question: "He is imbued ______ a sense of duty.",
-                options: ["with", "in", "by", "from"],
-                answer: 0,
+                question: "He is imbued ______ a sense of patriotism.",
+                options: ["in", "by", "from", "with"],
+                answer: 3,
                 explanation: "'Imbued with' means deeply inspired by a feeling or quality.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 435
             },
             {
-                question: "The decision is incumbent ______ him.",
-                options: ["on", "upon", "to", "for"],
-                answer: 0,
+                question: "The responsibility is incumbent ______ him.",
+                options: ["upon", "to", "for", "on"],
+                answer: 3,
                 explanation: "'Incumbent on/upon' means necessary for (someone) as a duty or responsibility.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 435
             },
             {
-                question: "He is partial ______ his younger son.",
-                options: ["to", "towards", "for", "with"],
-                answer: 0,
+                question: "He is partial ______ sweet dishes.",
+                options: ["towards", "for", "with", "to"],
+                answer: 3,
                 explanation: "'Partial to' means having a strong liking for something or someone.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 435
             },
             {
-                question: "The city is replete ______ historical monuments.",
-                options: ["with", "in", "of", "by"],
-                answer: 0,
+                question: "The room is replete ______ books.",
+                options: ["in", "of", "by", "with"],
+                answer: 3,
                 explanation: "'Replete with' means filled or well-supplied with something.",
-                difficulty: "tough"
+                difficulty: "tough", source_page: 435
+            },
+            {
+                question: "He is senior ______ me by two years.",
+                options: ["than", "from", "over", "to"],
+                answer: 3,
+                explanation: "'Senior to' is the correct comparative phrase.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She is good ______ playing chess.",
+                options: ["in", "on", "with", "at"],
+                answer: 3,
+                explanation: "'Good at' is used for skills.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is suffering ______ fever.",
+                options: ["with", "of", "by", "from"],
+                answer: 3,
+                explanation: "'Suffering from' is used for illnesses.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "I congratulated him ______ his success.",
+                options: ["for", "about", "with", "on"],
+                answer: 3,
+                explanation: "'Congratulate on' is the correct phrase.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She is addicted ______ coffee.",
+                options: ["in", "on", "with", "to"],
+                answer: 3,
+                explanation: "'Addicted to' means having a strong habit or dependence.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is angry ______ what you said.",
+                options: ["with", "at", "for", "about"],
+                answer: 3,
+                explanation: "'Angry about' is used when angry about a situation or thing.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She is afraid ______ heights.",
+                options: ["from", "with", "by", "of"],
+                answer: 3,
+                explanation: "'Afraid of' is the correct idiom.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is busy ______ his work.",
+                options: ["in", "at", "on", "with"],
+                answer: 3,
+                explanation: "'Busy with' is used to describe being occupied with a task.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She is confident ______ her abilities.",
+                options: ["in", "about", "with", "of"],
+                answer: 3,
+                explanation: "'Confident of' is used to express certainty about one's abilities.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is keen ______ learning new things.",
+                options: ["in", "about", "for", "on"],
+                answer: 3,
+                explanation: "'Keen on' means enthusiastic about something.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She is proud ______ her achievements.",
+                options: ["for", "about", "with", "of"],
+                answer: 3,
+                explanation: "'Proud of' is the correct phrase.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is responsible ______ his family.",
+                options: ["to", "of", "with", "for"],
+                answer: 3,
+                explanation: "'Responsible for' means being accountable for someone or something.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is interested ______ politics.",
+                options: ["on", "at", "about", "in"],
+                answer: 3,
+                explanation: "'Interested in' is the correct phrase.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She is annoyed ______ his behavior.",
+                options: ["at", "by", "about", "with"],
+                answer: 3,
+                explanation: "'Annoyed with' is used when annoyed at a person.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He was born ______ a poor family.",
+                options: ["in", "of", "from", "into"],
+                answer: 3,
+                explanation: "'Born into' is used for circumstances or families.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is capable ______ solving this problem.",
+                options: ["in", "for", "with", "of"],
+                answer: 3,
+                explanation: "'Capable of' is used to express ability.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She complained ______ the noise.",
+                options: ["to", "at", "for", "about"],
+                answer: 3,
+                explanation: "'Complain about' is used when complaining about a thing or situation.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is familiar ______ this software.",
+                options: ["to", "about", "of", "with"],
+                answer: 3,
+                explanation: "'Familiar with' means having knowledge or experience of something.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is known ______ his honesty.",
+                options: ["as", "by", "of", "for"],
+                answer: 3,
+                explanation: "'Known for' is used to describe a distinguishing quality.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "She was surprised ______ his sudden arrival.",
+                options: ["by", "with", "on", "at"],
+                answer: 3,
+                explanation: "'Surprised at' is the correct idiom.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is engaged ______ a new project.",
+                options: ["on", "with", "to", "in"],
+                answer: 3,
+                explanation: "'Engaged in' means involved in an activity.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "The dog jumped ______ the table.",
+                options: ["on", "over", "at", "onto"],
+                answer: 3,
+                explanation: "'Onto' indicates movement to a surface.",
+                difficulty: "medium", source_page: 435
+            },
+            {
+                question: "He is popular ______ his students.",
+                options: ["among", "to", "by", "with"],
+                answer: 3,
+                explanation: "'Popular with' is used to describe being liked by a group.",
+                difficulty: "medium", source_page: 435
             },
 
-            // Islamic Studies (IS) - Additional questions to reach 40 tough
-            // Medium (7 more questions)
+
+            // General Abilities (Problems on Ages)
             {
-                question: "What is the name of the cave where Prophet Muhammad (PBUH) received his first revelation?",
-                options: ["Cave of Thawr", "Cave of Hira", "Cave of Uhud", "Cave of Arafat"],
+                question: "Ahmad is 10 years old. His father is 3 times his age. How old is his father?",
+                options: ["20", "25", "30", "35"],
+                answer: 2,
+                explanation: "Father's age = 3 * Ahmad's age = 3 * 10 = 30 years.",
+                difficulty: "easy", source_page: 519
+            },
+            {
+                question: "If Maria is 15 years old and her brother is 5 years younger, how old is her brother?",
+                options: ["8", "10", "12", "13"],
                 answer: 1,
-                explanation: "Prophet Muhammad (PBUH) received his first revelation in the Cave of Hira on Jabal al-Nour (Mountain of Light).",
-                difficulty: "medium"
+                explanation: "Brother's age = Maria's age - 5 = 15 - 5 = 10 years.",
+                difficulty: "easy", source_page: 519
             },
             {
-                question: "What is the Arabic word for 'prayer mat'?",
-                options: ["Tasbih", "Sajjadah", "Miswak", "Qibla"],
+                question: "The sum of the ages of two friends is 20. If one is 8 years old, how old is the other?",
+                options: ["10", "11", "12", "13"],
+                answer: 2,
+                explanation: "Other friend's age = 20 - 8 = 12 years.",
+                difficulty: "easy", source_page: 519
+            },
+            {
+                question: "The present age of a father is three times the age of his son. After 10 years, the father's age will be twice the age of his son. What is the present age of the father?",
+                options: ["20 years", "25 years", "30 years", "35 years"],
+                answer: 2,
+                explanation: "Let son's age be x. Father's age = 3x. After 10 years, son's age = x+10, father's age = 3x+10. So, 3x+10 = 2(x+10) => 3x+10 = 2x+20 => x=10. Father's present age = 3*10 = 30 years.",
+                difficulty: "medium", source_page: 519
+            },
+            {
+                question: "The ratio of the ages of A and B is 3:5. If the sum of their ages is 40, what is the age of B?",
+                options: ["15 years", "20 years", "25 years", "30 years"],
+                answer: 2,
+                explanation: "Let ages be 3x and 5x. 3x+5x=40 => 8x=40 => x=5. Age of B = 5x = 5*5 = 25 years.",
+                difficulty: "medium", source_page: 519
+            },
+            {
+                question: "Ten years ago, the age of A was half the age of B. If the ratio of their present ages is 3:4, what is the sum of their present ages?",
+                options: ["30 years", "35 years", "40 years", "45 years"],
                 answer: 1,
-                explanation: "Sajjadah is a prayer mat used by Muslims during Salat.",
-                difficulty: "medium"
+                explanation: "Present ages: A=3x, B=4x. 10 years ago: A=3x-10, B=4x-10. (3x-10) = 1/2(4x-10) => 6x-20 = 4x-10 => 2x=10 => x=5. Present ages: A=15, B=20. Sum = 35 years.",
+                difficulty: "medium", source_page: 519
             },
             {
-                question: "How many chapters (Surahs) are there in the Holy Quran?",
-                options: ["110", "112", "114", "116"],
+                question: "The age of a mother is twice the age of her daughter. If 20 years ago, the mother's age was four times the daughter's age, what is the present age of the daughter?",
+                options: ["20 years", "25 years", "30 years", "35 years"],
                 answer: 2,
-                explanation: "The Holy Quran consists of 114 Surahs.",
-                difficulty: "medium"
+                explanation: "Let daughter's age be x. Mother's age = 2x. 20 years ago: Daughter=x-20, Mother=2x-20. 2x-20 = 4(x-20) => 2x-20 = 4x-80 => 2x=60 => x=30. Daughter's present age = 30 years.",
+                difficulty: "medium", source_page: 519
             },
             {
-                question: "What is the name of the angel of death in Islam?",
-                options: ["Jibril", "Mika'il", "Israfil", "Azra'il"],
-                answer: 3,
-                explanation: "Azra'il is the angel of death in Islam, also known as Malak al-Maut.",
-                difficulty: "medium"
-            },
-            {
-                question: "Which of the following is considered the 'heart of the Quran'?",
-                options: ["Surah Al-Baqarah", "Surah Ya-Sin", "Surah Al-Kahf", "Surah Ar-Rahman"],
-                answer: 1,
-                explanation: "Surah Ya-Sin is widely regarded as the 'heart of the Quran'.",
-                difficulty: "medium"
-            },
-            {
-                question: "What is the Islamic term for 'charity given to the poor and needy, usually during Ramadan'?",
-                options: ["Zakat", "Sadaqah", "Fitra", "Kaffarah"],
-                answer: 2,
-                explanation: "Fitra (Zakat al-Fitr) is a charity given to the poor at the end of Ramadan.",
-                difficulty: "medium"
-            },
-            {
-                question: "Who was the maternal grandfather of Prophet Muhammad (PBUH)?",
-                options: ["Abd al-Muttalib", "Abu Talib", "Wahb ibn Abd Manaf", "Abdullah ibn Abd al-Muttalib"],
-                answer: 2,
-                explanation: "Wahb ibn Abd Manaf was the maternal grandfather of Prophet Muhammad (PBUH).",
-                difficulty: "medium"
-            },
-            // Tough (20 more questions)
-            {
-                question: "Which of the following battles is also known as the 'Battle of the Trench'?",
-                options: ["Battle of Badr", "Battle of Uhud", "Battle of Khandaq", "Battle of Khaybar"],
-                answer: 2,
-                explanation: "The Battle of Khandaq (Ditch) involved digging a trench around Madinah.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the Islamic term for 'interpretation of the Quran'?",
-                options: ["Hadith", "Fiqh", "Tafsir", "Sunnah"],
-                answer: 2,
-                explanation: "Tafsir is the exegesis or interpretation of the Quran.",
-                difficulty: "tough"
-            },
-            {
-                question: "Who was the fourth Caliph of Islam and cousin/son-in-law of Prophet Muhammad (PBUH)?",
-                options: ["Abu Bakr", "Umar", "Uthman", "Ali"],
-                answer: 3,
-                explanation: "Ali ibn Abi Talib was the fourth Rashidun Caliph.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the Islamic term for 'divine decree' or 'predestination'?",
-                options: ["Qadar", "Tawakkul", "Shura", "Ijtehad"],
+                question: "The sum of the ages of 5 children born at intervals of 3 years each is 50 years. What is the age of the youngest child?",
+                options: ["4 years", "5 years", "6 years", "7 years"],
                 answer: 0,
-                explanation: "Qadar refers to the divine decree or predestination in Islam.",
-                difficulty: "tough"
+                explanation: "Let the ages be x, x+3, x+6, x+9, x+12. Sum = 5x + 30 = 50 => 5x = 20 => x = 4 years.",
+                difficulty: "tough", source_page: 519
             },
             {
-                question: "Which of the following is NOT one of the 'Ashara Mubashara' (The Ten Promised Paradise)?",
-                options: ["Abu Bakr as-Siddiq", "Umar ibn al-Khattab", "Khalid ibn al-Walid", "Ali ibn Abi Talib"],
+                question: "A father's age is 5 times his son's age. Four years ago, the father's age was 9 times his son's age. What are their present ages?",
+                options: ["Son: 6, Father: 30", "Son: 7, Father: 35", "Son: 8, Father: 40", "Son: 9, Father: 45"],
                 answer: 2,
-                explanation: "Khalid ibn al-Walid was a great general but not among the ten promised paradise.",
-                difficulty: "tough"
+                explanation: "Let son's age be x, father's age = 5x. 4 years ago: son = x-4, father = 5x-4. 5x-4 = 9(x-4) => 5x-4 = 9x-36 => 4x=32 => x=8. Son: 8, Father: 40.",
+                difficulty: "tough", source_page: 519
             },
             {
-                question: "What is the Islamic term for a 'legal opinion' or 'ruling' issued by an Islamic scholar?",
-                options: ["Fatwa", "Hadith", "Ijma", "Qiyas"],
-                answer: 0,
-                explanation: "A Fatwa is a non-binding legal opinion on a point of Islamic law.",
-                difficulty: "tough"
-            },
-            {
-                question: "In which year was the Treaty of Hudaybiyyah signed?",
-                options: ["5 AH", "6 AH", "7 AH", "8 AH"],
+                question: "The ratio of the ages of two persons is 4:7 and one is 15 years older than the other. What is the age of the younger person?",
+                options: ["15 years", "20 years", "25 years", "30 years"],
                 answer: 1,
-                explanation: "The Treaty of Hudaybiyyah was signed in 6 AH (628 CE) between Prophet Muhammad (PBUH) and the Quraish of Makkah.",
-                difficulty: "tough"
+                explanation: "Let ages be 4x and 7x. 7x - 4x = 15 => 3x=15 => x=5. Younger person's age = 4x = 4*5 = 20 years.",
+                difficulty: "tough", source_page: 519
             },
             {
-                question: "What is the Islamic term for 'analogy' used in deriving rulings when there is no direct text in the Quran or Sunnah?",
-                options: ["Ijma", "Ijtihad", "Qiyas", "Istihsan"],
+                question: "The age of a man is 24 years more than his son. In two years, his age will be twice the age of his son. What is the present age of the son?",
+                options: ["20 years", "22 years", "24 years", "26 years"],
+                answer: 1,
+                explanation: "Let son's age be x. Man's age = x+24. In 2 years: son = x+2, man = x+26. x+26 = 2(x+2) => x+26 = 2x+4 => x=22. Son's present age = 22 years.",
+                difficulty: "tough", source_page: 519
+            },
+            {
+                question: "If 6 years are subtracted from the present age of A and the remainder is divided by 18, then the present age of B is obtained. If B is 2 years younger than C whose age is 4 years, then find the age of A.",
+                options: ["36 years", "40 years", "42 years", "48 years"],
                 answer: 2,
-                explanation: "Qiyas is a method of analogical deduction in Islamic jurisprudence.",
-                difficulty: "tough"
+                explanation: "C's age = 4. B's age = 4-2 = 2. (A-6)/18 = 2 => A-6 = 36 => A = 42 years.",
+                difficulty: "tough", source_page: 519
             },
             {
-                question: "Which of the following is NOT one of the 'Ummul Mu'minin' (Mothers of the Believers)?",
-                options: ["Aisha bint Abi Bakr", "Hafsa bint Umar", "Fatimah bint Muhammad", "Umm Salama Hind bint Abi Umayya"],
+                question: "The sum of the ages of a father and his son is 45 years. Five years ago, the product of their ages was 4 times the father's then age. What are their present ages?",
+                options: ["Father: 30, Son: 15", "Father: 32, Son: 13", "Father: 36, Son: 9", "Father: 40, Son: 5"],
                 answer: 2,
-                explanation: "Fatimah was Prophet Muhammad's daughter, not one of his wives.",
-                difficulty: "tough"
+                explanation: "Let father's age be F, son's age be S. F+S=45. 5 years ago: (F-5)(S-5) = 4(F-5). Since F-5 cannot be 0 (father is alive), S-5=4 => S=9. F=45-9=36. Father: 36, Son: 9.",
+                difficulty: "tough", source_page: 520
             },
             {
-                question: "What is the Islamic term for 'seeking forgiveness from Allah'?",
-                options: ["Dua", "Istighfar", "Tawbah", "Shukr"],
-                answer: 1,
-                explanation: "Istighfar is the act of seeking forgiveness from Allah.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which battle is known for the martyrdom of Hamza ibn Abd al-Muttalib, Prophet Muhammad's uncle?",
-                options: ["Battle of Badr", "Battle of Uhud", "Battle of Khandaq", "Battle of Hunayn"],
-                answer: 1,
-                explanation: "Hamza was martyred in the Battle of Uhud.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the Islamic term for 'consultation' or 'mutual deliberation'?",
-                options: ["Ijma", "Shura", "Qiyas", "Ijtihad"],
-                answer: 1,
-                explanation: "Shura is the principle of consultation in Islamic governance.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which companion of Prophet Muhammad (PBUH) is known as 'Sayyid al-Shuhada' (Master of Martyrs)?",
-                options: ["Ali ibn Abi Talib", "Umar ibn al-Khattab", "Hamza ibn Abd al-Muttalib", "Uthman ibn Affan"],
-                answer: 2,
-                explanation: "Hamza ibn Abd al-Muttalib was given the title 'Sayyid al-Shuhada' after his martyrdom in the Battle of Uhud.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the Islamic term for 'the path' or 'the way'?",
-                options: ["Sunnah", "Sharia", "Fiqh", "Hadith"],
-                answer: 1,
-                explanation: "Sharia refers to the Islamic law derived from the Quran and Sunnah, guiding Muslims in all aspects of life.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which of the following is the Islamic term for 'hypocrites'?",
-                options: ["Mushrikun", "Kafiroon", "Munafiqoon", "Fasiqoon"],
-                answer: 2,
-                explanation: "Munafiqoon refers to those who outwardly profess Islam but inwardly conceal disbelief.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the Islamic term for 'the house of wisdom', a major intellectual center during the Islamic Golden Age?",
-                options: ["Dar al-Hikma", "Bayt al-Mal", "Madrasa", "Jami'ah"],
-                answer: 0,
-                explanation: "Dar al-Hikma (House of Wisdom) was a major library and translation center in Baghdad.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which Islamic festival marks the end of Ramadan?",
-                options: ["Eid al-Adha", "Eid al-Fitr", "Ashura", "Mawlid"],
-                answer: 1,
-                explanation: "Eid al-Fitr celebrates the end of the fasting month of Ramadan.",
-                difficulty: "tough"
-            },
-            {
-                question: "What is the maximum number of wives a Muslim man is permitted to have at one time, according to Islamic law?",
-                options: ["One", "Two", "Three", "Four"],
+                question: "A man is 3 times older than his son. 15 years ago, the man was 6 times older than his son. Find the present age of the son.",
+                options: ["18 years", "20 years", "22 years", "25 years"],
                 answer: 3,
-                explanation: "A Muslim man may have up to four wives simultaneously, provided he treats them all justly.",
-                difficulty: "tough"
+                explanation: "Let son's age be x, man's age = 3x. 15 years ago: son = x-15, man = 3x-15. 3x-15 = 6(x-15) => 3x-15 = 6x-90 => 3x=75 => x=25. Son's present age = 25 years.",
+                difficulty: "tough", source_page: 520
             },
             {
-                question: "What is the Islamic term for 'the call to prayer'?",
-                options: ["Iqamah", "Adhan", "Takbir", "Tasbih"],
-                answer: 1,
-                explanation: "Adhan is the Islamic call to prayer, recited by the muezzin.",
-                difficulty: "tough"
-            },
-            {
-                question: "Which Islamic month is known as the month of pilgrimage?",
-                options: ["Shawwal", "Dhul Qa'dah", "Dhul Hijjah", "Muharram"],
+                question: "The ratio of the present ages of A and B is 4:5. After 8 years, the ratio of their ages will be 5:6. Find the present age of A.",
+                options: ["24 years", "28 years", "32 years", "36 years"],
                 answer: 2,
-                explanation: "Dhul Hijjah is the twelfth and final month in the Islamic calendar, during which the annual Hajj pilgrimage takes place.",
-                difficulty: "tough"
+                explanation: "Let present ages be 4x and 5x. After 8 years: (4x+8)/(5x+8) = 5/6 => 6(4x+8) = 5(5x+8) => 24x+48 = 25x+40 => x=8. Present age of A = 4x = 4*8 = 32 years.",
+                difficulty: "tough", source_page: 520
+            },
+            {
+                question: "The age of a father is 4 times that of his son. 5 years ago, the father's age was 7 times that of his son. Find their present ages.",
+                options: ["Son: 8, Father: 32", "Son: 9, Father: 36", "Son: 10, Father: 40", "Son: 12, Father: 48"],
+                answer: 2,
+                explanation: "Let son's age be x, father's age = 4x. 5 years ago: son = x-5, father = 4x-5. 4x-5 = 7(x-5) => 4x-5 = 7x-35 => 3x=30 => x=10. Son: 10, Father: 40.",
+                difficulty: "tough", source_page: 520
+            },
+            {
+                question: "The sum of the ages of a mother and her daughter is 60 years. 10 years ago, the mother's age was 4 times the daughter's age. What is the present age of the daughter?",
+                options: ["15 years", "18 years", "20 years", "22 years"],
+                answer: 1,
+                explanation: "Let daughter's age be x, mother's age = 60-x. 10 years ago: daughter = x-10, mother = 50-x. 50-x = 4(x-10) => 50-x = 4x-40 => 5x=90 => x=18. Daughter's present age = 18 years.",
+                difficulty: "tough", source_page: 520
+            },
+            {
+                question: "The average age of 30 students and a teacher is 15 years. If the teacher's age is excluded, the average age decreases by 1 year. What is the teacher's age?",
+                options: ["40 years", "42 years", "45 years", "48 years"],
+                answer: 2,
+                explanation: "Total age of 30 students + teacher = 31 * 15 = 465. Total age of 30 students = 30 * 14 = 420. Teacher's age = 465 - 420 = 45 years.",
+                difficulty: "tough", source_page: 520
+            },
+            {
+                question: "The ratio of the ages of two brothers is 2:3. If the sum of their ages is 25, what is the age of the elder brother?",
+                options: ["10 years", "12 years", "15 years", "18 years"],
+                answer: 2,
+                explanation: "Let ages be 2x and 3x. 2x+3x=25 => 5x=25 => x=5. Elder brother's age = 3x = 3*5 = 15 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The age of a person is 3 times the age of his friend. If after 5 years, the sum of their ages will be 50, what is the present age of the person?",
+                options: ["25 years", "30 years", "35 years", "40 years"],
+                answer: 1,
+                explanation: "Let friend's age be x. Person's age = 3x. After 5 years: (x+5) + (3x+5) = 50 => 4x+10=50 => 4x=40 => x=10. Person's present age = 3*10 = 30 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The average age of 10 students is 15 years. If a new student joins, the average age becomes 16 years. What is the age of the new student?",
+                options: ["20 years", "22 years", "24 years", "26 years"],
+                answer: 3,
+                explanation: "Total age of 10 students = 10 * 15 = 150. Total age of 11 students (with new) = 11 * 16 = 176. Age of new student = 176 - 150 = 26 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The ratio of the ages of A and B is 3:4. If A is 6 years younger than B, what is the sum of their ages?",
+                options: ["30 years", "36 years", "42 years", "48 years"],
+                answer: 2,
+                explanation: "Let ages be 3x and 4x. 4x - 3x = 6 => x=6. A=18, B=24. Sum = 18+24 = 42 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "A man is 25 years older than his son. In 5 years, the man's age will be twice his son's age. What is the son's present age?",
+                options: ["15 years", "18 years", "20 years", "22 years"],
+                answer: 2,
+                explanation: "Let son's age be x. Man's age = x+25. In 5 years: son = x+5, man = x+30. x+30 = 2(x+5) => x+30 = 2x+10 => x=20. Son's present age = 20 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The average age of 5 boys is 12 years. If a new boy joins, the average age becomes 13 years. What is the age of the new boy?",
+                options: ["15 years", "16 years", "17 years", "18 years"],
+                answer: 3,
+                explanation: "Total age of 5 boys = 5 * 12 = 60. Total age of 6 boys = 6 * 13 = 78. Age of new boy = 78 - 60 = 18 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The ratio of the ages of two persons is 5:6. If 5 years ago, the ratio was 4:5, what is their present age?",
+                options: ["20, 24", "25, 30", "30, 36", "35, 42"],
+                answer: 1,
+                explanation: "Let present ages be 5x and 6x. 5 years ago: (5x-5)/(6x-5) = 4/5 => 5(5x-5) = 4(6x-5) => 25x-25 = 24x-20 => x=5. Present ages: 5*5=25, 6*5=30.",
+                difficulty: "tough", source_page: 520
+            },
+            {
+                question: "A father's age is 3 times his son's age. If their combined age is 48, what is the son's age?",
+                options: ["10 years", "12 years", "14 years", "16 years"],
+                answer: 1,
+                explanation: "Let son's age be x. Father's age = 3x. x + 3x = 48 => 4x = 48 => x = 12. Son's age is 12 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The sum of the ages of A and B is 30. If A is 4 years older than B, what is B's age?",
+                options: ["11 years", "13 years", "15 years", "17 years"],
+                answer: 1,
+                explanation: "Let B's age be x. A's age = x+4. (x+4) + x = 30 => 2x+4 = 30 => 2x=26 => x=13. B's age is 13 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The average age of 20 students is 16 years. If the teacher's age is added, the average age becomes 17 years. What is the teacher's age?",
+                options: ["35 years", "37 years", "39 years", "41 years"],
+                answer: 3,
+                explanation: "Total age of 20 students = 20 * 16 = 320. Total age of 21 (students+teacher) = 21 * 17 = 357. Teacher's age = 357 - 320 = 37 years.",
+                difficulty: "tough", source_page: 520
+            },
+            {
+                question: "The ratio of the ages of two sisters is 2:5. If the difference in their ages is 15 years, what is the age of the younger sister?",
+                options: ["8 years", "10 years", "12 years", "15 years"],
+                answer: 1,
+                explanation: "Let ages be 2x and 5x. 5x - 2x = 15 => 3x = 15 => x = 5. Younger sister's age = 2x = 2*5 = 10 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "A mother is 30 years older than her son. In 10 years, the mother will be twice as old as her son. What is the son's present age?",
+                options: ["18 years", "20 years", "22 years", "25 years"],
+                answer: 1,
+                explanation: "Let son's age be x. Mother's age = x+30. In 10 years: son = x+10, mother = x+40. x+40 = 2(x+10) => x+40 = 2x+20 => x=20. Son's present age = 20 years.",
+                difficulty: "medium", source_page: 520
+            },
+            {
+                question: "The average age of a family of 5 members is 20 years. If the youngest member is 4 years old, what was the average age of the *other 4 members* 4 years ago?",
+                options: ["20 years", "22 years", "24 years", "25 years"],
+                answer: 0,
+                explanation: "Total current age = 5 * 20 = 100 years. Current age of the other 4 members = 100 - 4 = 96 years. 4 years ago, the sum of ages of these 4 members = 96 - (4 * 4) = 96 - 16 = 80 years. Average age of these 4 members 4 years ago = 80 / 4 = 20 years.",
+                difficulty: "medium", source_page: 519
             }
         ];
 
@@ -1662,25 +1257,47 @@
         }
 
         function initializeQuizQuestions() {
-            // Separate questions by difficulty
-            const easyQuestions = allQuizQuestions.filter(q => q.difficulty === 'easy');
-            const mediumQuestions = allQuizQuestions.filter(q => q.difficulty === 'medium');
-            const toughQuestions = allQuizQuestions.filter(q => q.difficulty === 'tough');
+            // Create a copy to work with
+            let tempQuestions = [...allQuizQuestions];
+            tempQuestions = shuffleArray(tempQuestions); // Shuffle the entire pool first
 
-            // Shuffle each difficulty pool
-            const shuffledEasy = shuffleArray(easyQuestions);
-            const shuffledMedium = shuffleArray(mediumQuestions);
-            const shuffledTough = shuffleArray(toughQuestions);
+            const easyQuestions = [];
+            const mediumQuestions = [];
+            const toughQuestions = [];
 
-            // Select the required number of questions
-            const selectedEasy = shuffledEasy.slice(0, 10);
-            const selectedMedium = shuffledMedium.slice(0, 50);
-            const selectedTough = shuffledTough.slice(0, 40);
+            // Distribute questions based on their 'difficulty' property
+            tempQuestions.forEach(q => {
+                if (q.difficulty === 'easy' && easyQuestions.length < 10) {
+                    easyQuestions.push(q);
+                } else if (q.difficulty === 'medium' && mediumQuestions.length < 50) {
+                    mediumQuestions.push(q);
+                } else if (q.difficulty === 'tough' && toughQuestions.length < 40) {
+                    toughQuestions.push(q);
+                }
+            });
+
+            // If any category is short, fill from other categories, prioritizing the specified counts
+            let remainingQuestions = tempQuestions.filter(q =>
+                !easyQuestions.includes(q) && !mediumQuestions.includes(q) && !toughQuestions.includes(q)
+            );
+            remainingQuestions = shuffleArray(remainingQuestions);
+
+            while (easyQuestions.length < 10 && remainingQuestions.length > 0) {
+                easyQuestions.push(remainingQuestions.pop());
+            }
+            while (mediumQuestions.length < 50 && remainingQuestions.length > 0) {
+                mediumQuestions.push(remainingQuestions.pop());
+            }
+            while (toughQuestions.length < 40 && remainingQuestions.length > 0) {
+                toughQuestions.push(remainingQuestions.pop());
+            }
 
             // Combine and shuffle the final set of 100 questions
-            quizQuestions = shuffleArray([...selectedEasy, ...selectedMedium, ...selectedTough]);
+            quizQuestions = shuffleArray([...easyQuestions, ...mediumQuestions, ...toughQuestions]);
 
-            // Ensure exactly 100 questions
+            // Ensure exactly 100 questions (trim if necessary, though with 100 in pool, it should be exact)
+            quizQuestions = quizQuestions.slice(0, 100);
+
             if (quizQuestions.length !== 100) {
                 showModal("Error: Could not generate exactly 100 unique questions. Please refresh.", "alert");
                 return;
@@ -1971,7 +1588,8 @@
             const username = usernameInput.value;
             const password = passwordInput.value;
 
-            if (username === '27MAY' && password === 'free') {
+            // Updated login credentials for May 28
+            if (username === '28MAY' && password === 'free') {
                 loginPage.classList.add('hidden');
                 candidateInfoPage.classList.remove('hidden');
                 loginError.classList.add('hidden');
